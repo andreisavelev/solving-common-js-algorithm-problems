@@ -31,3 +31,33 @@ const removeDuplicates = function(nums: number[]): number {
     
     return nums.length;
 };
+
+/**
+ * Function that takes a string and returns a count of each characters in the string.
+ * The result should be an object that contains characters as a key and a count of it's characters as a number
+ * Non-letter/number characters should be omitted
+ * 
+ * @param input {string}
+ * @returns {object}
+ */
+const charactersCounter = function (input: string): {[key: string]: number} {
+    // Create a container/counter
+    const caractersContainer = {};
+    const letterNumber = /[a-z]|[\d]/;
+    let character = '';
+
+    for  (let i = 0; i < input.length; i++) {
+        character = input[i].toLowerCase();
+
+        // Do something only wnen the character is a letter/number
+        if (letterNumber.test(character)) {
+            if (!caractersContainer.hasOwnProperty(character)) {
+                caractersContainer[character] = 1;
+            } else {
+                caractersContainer[character]++
+            }
+        }
+    }
+
+    return caractersContainer;
+}
