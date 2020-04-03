@@ -46,18 +46,22 @@ const charactersCounter = function (input: string): {[key: string]: number} {
     const letterNumber = /[a-z]|[\d]/;
     let character = '';
 
-    for  (let i = 0; i < input.length; i++) {
-        character = input[i].toLowerCase();
-
-        // Do something only wnen the character is a letter/number
-        if (letterNumber.test(character)) {
-            if (!caractersContainer.hasOwnProperty(character)) {
-                caractersContainer[character] = 1;
-            } else {
-                caractersContainer[character]++
+    // Do some logic only if the input is not empty
+    if (input.length) {
+        for  (let i = 0; i < input.length; i++) {
+            character = input[i].toLowerCase();
+    
+            // Do something only wnen the character is a letter/number
+            if (letterNumber.test(character)) {
+                if (!caractersContainer.hasOwnProperty(character)) {
+                    caractersContainer[character] = 1;
+                } else {
+                    caractersContainer[character]++
+                }
             }
         }
     }
 
+    // Return result
     return caractersContainer;
 }
