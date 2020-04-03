@@ -43,7 +43,7 @@ const removeDuplicates = function(nums: number[]): number {
 const charactersCounter = function (input: string): {[key: string]: number} {
     // Create a container/counter
     const caractersContainer = {};
-    const letterNumber = /[a-z]|[\d]/;
+    const letterNumber = /[a-z0-9]/;
 
     // Do some logic only if the input is not empty
     if (input.length) {
