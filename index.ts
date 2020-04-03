@@ -107,3 +107,38 @@ const maxProfit = function(prices: number[]): number {
     return result;
 };
 
+/**
+ * This function determines if the second string is anagram of the first
+ * @param str1 {string}
+ * @param str2 {string}
+ * @returns {boolean}
+ */
+const validAnagram = function (str1: string, str2: string): boolean {
+    let strCounter1 = {};
+    let strCounter2 = {};
+    
+    if (str1.length !== str2.length) {
+        return false;
+    }
+    
+    for (let char of str1) {
+        strCounter1[char] = (strCounter1[char] || 0) + 1;
+    }
+    
+    for (let char of str2) {
+        strCounter2[char] = (strCounter2[char] || 0) + 1;
+    }
+    
+    for (let key in strCounter1) {
+        if (!(key in strCounter2)) {
+            return false;
+        }
+        
+        if (strCounter1[key] !== strCounter2[key]) {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
