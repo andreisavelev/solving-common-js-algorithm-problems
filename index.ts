@@ -33,6 +33,26 @@ const removeDuplicates = function(nums: number[]): number {
 };
 
 /**
+ * Accepts only one single charcter and check it for a numeric or a letter
+ * @param char {string} only one character
+ * @returns {boolean}
+ */
+const isAlphaNumeric = function (char: string): boolean {
+    const code = char.charCodeAt(0);
+    let result = true
+
+    if (
+        !(code > 47 && code < 58) && // numeric [0 - 9]
+        !(code > 64 && code < 91) && // upper alpha [A - Z]
+        !(code > 96 && code < 123) // lower alpha [a - z]
+    ) {
+        result = false;
+    }
+
+    return result;
+};
+
+/**
  * Function that takes a string and returns a count of each characters in the string.
  * The result should be an object that contains characters as a key and a count of it's characters as a number
  * Non-letter/number characters should be omitted
@@ -43,7 +63,9 @@ const removeDuplicates = function(nums: number[]): number {
 const charactersCounter = function (input: string): {[key: string]: number} {
     // Create a container/counter
     const caractersContainer = {};
-    const letterNumber = /[a-z0-9]/;
+    
+    // Simples way is the regexp but it might works slowly then charCodeAt checking
+    // const letterNumber = /[a-z0-9]/;
 
     // Do some logic only if the input is not empty
     if (input.length) {
@@ -51,7 +73,8 @@ const charactersCounter = function (input: string): {[key: string]: number} {
             char = char.toLowerCase();
     
             // Do something only wnen the character is a letter/number
-            if (letterNumber.test(char)) {
+            // Using function with charCodeAt checking under the hood
+            if (isAlphaNumeric(char)) {
                 if (!caractersContainer.hasOwnProperty(char)) {
                     caractersContainer[char] = 1;
                 } else {
@@ -63,4 +86,4 @@ const charactersCounter = function (input: string): {[key: string]: number} {
 
     // Return result
     return caractersContainer;
-}
+};
