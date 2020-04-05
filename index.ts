@@ -181,3 +181,14 @@ var rotate = function(nums, k) {
     
     nums.splice(0, len);
 };
+
+/**
+ * Given an array of integers, find if the array contains any duplicates.
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function(nums: number[]): boolean {
+    let set = new Set(nums);
+    
+    return set.size !== nums.length
+};
