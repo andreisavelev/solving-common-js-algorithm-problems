@@ -142,3 +142,42 @@ const validAnagram = function (str1: string, str2: string): boolean {
     return true;
 }
 
+/**
+ * Given an array, rotate the array to the right by k steps, where k is non-negative. 
+ * Time complexity is O(n);
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var rotate = function(nums, k) {
+    let arrEnd = nums.splice(nums.length - k);
+    let arrStart = nums.splice(0);
+    
+    for (let i = 0; i < arrEnd.length; i++) {
+        nums.push(arrEnd[i])
+    }
+    
+    nums.push(...arrStart);
+};
+
+/**
+ * Given an array, rotate the array to the right by k steps, where k is non-negative.
+ * Timne complexity is O(lig n);
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var rotate = function(nums, k) {
+    let len = nums.length - k;
+    
+    if (k > nums.length) {
+        k = k - nums.length;
+        len = nums.length - k;
+    }
+    
+    for (let i = 0; i < len; i++) {
+        nums.push(nums[i]);
+    }
+    
+    nums.splice(0, len);
+};
