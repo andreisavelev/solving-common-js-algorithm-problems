@@ -149,7 +149,7 @@ const validAnagram = function (str1: string, str2: string): boolean {
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-var rotate = function(nums, k) {
+var rotate = function(nums: number[], k: number): void {
     let arrEnd = nums.splice(nums.length - k);
     let arrStart = nums.splice(0);
     
@@ -167,7 +167,7 @@ var rotate = function(nums, k) {
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-var rotate = function(nums, k) {
+var rotate2 = function(nums: number[], k: number): void {
     let len = nums.length - k;
     
     if (k > nums.length) {
