@@ -192,3 +192,28 @@ var containsDuplicate = function(nums: number[]): boolean {
     
     return set.size !== nums.length
 };
+
+/**
+ * Given a non-empty array of integers, every element appears twice except for one. Find that single one.
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function(nums: number[]): number {
+    const counter = {};
+    let result: string = '';
+    
+    for (let item of nums) {
+        counter[item] = (counter[item] || 0) + 1;
+    }
+    
+    
+    for (let key in counter) {
+        if (counter.hasOwnProperty(key)) {
+            if (counter[key] === 1) {
+                result = key;
+            }
+        }
+    }
+    
+    return +result;
+};
