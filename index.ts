@@ -217,3 +217,27 @@ var singleNumber = function(nums: number[]): number {
     
     return +result;
 };
+
+/**
+ * Should return the first pair wich sum as is zero as an array or return undefind.
+ * @param arr {number[]}
+ */
+const sumZero = function(arr: number[]): [number, number] | undefined {
+    let left = 0;
+    let right = arr.length -1;
+    let sum: number;
+
+    while (left < right) {
+        sum = arr[left] - arr[right];
+
+        if (sum === 0) {
+            return [arr[left], arr[right]];
+        } else if (sum > 0){
+            right--;
+        } else {
+            left--;
+        }
+    }
+
+    return undefined;
+}
