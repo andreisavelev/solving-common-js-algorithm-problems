@@ -249,24 +249,15 @@ const sumZero = function(arr: number[]): [number, number] | undefined {
  */
 const countUnicValues = function (array: number[]): number {
     let first = 0;
-    let second = 1;
-    let item = 0;
 
     if (!array.length) {
         return 0;
     }
 
-    while (second < array.length) {
-        if (array[first] < array[second]) {
-            item = array[second];
-            array.splice(first, 1, second);
+    for (let second = 1; second < array.length; second++) {
+        if (array[first] !== array[second]) {
             first++;
-            second++;
-        } else {
-            item = array[second];
-            array.splice(first, (second + 1) - first);
-            array.splice(first, 0, item);
-            second = first + 1;
+            array[first] = array[second];
         }
     }
 
