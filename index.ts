@@ -315,3 +315,28 @@ const bubbleSorting = function (collection: Array<any>) : Array<any> {
 
     return collection;
 }
+
+/**
+ * Similar to bubble sorting, but instad of first placing large values into sorted position, it places
+ * small values into sorted posotion
+ * @param collection {array}
+ */
+const selectionSorting = function (collection: Array<any>): Array<any> {
+    
+    for (let i = 0; i < collection.length; i++) {
+        let smaller = i;
+
+        for (let j = i + 1; j < collection.length; j ++) {
+            if (collection[smaller] > collection[j]) {
+                smaller = j;
+            }
+        }
+
+        // skip sorted values
+        if (smaller !== i) {
+            swap(collection, i, smaller);
+        }
+    }
+
+    return collection;
+}
