@@ -1,5 +1,5 @@
-
 /**
+
  * Remove duplicates from a sorted array nums in-place 
  * such that duplicates appeared at most twice and return the new length
  * @param nums {number[]}
@@ -262,4 +262,56 @@ const countUnicValues = function (array: number[]): number {
     }
 
     return first + 1;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Sorting 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Swap items in the array
+ * @param array {array}
+ * @param indexFrom {number}
+ * @param indexTo {number}
+ * @returns {array}
+ */
+const swap = function (array: Array<any>, indexFrom: number, indexTo: number): void {
+    [
+        array[indexFrom], 
+        array[indexTo]
+    ] = [
+        array[indexTo], 
+        array[indexFrom]
+    ];
+};
+
+
+/**
+ * Bubble sorting - a sorting algorithm where the largest value "bubble" to the top
+ * @param collection {number[]}
+ * @returns {number[]}
+ */
+const bubbleSorting = function (collection: Array<any>) : Array<any> {
+    let noSwap: boolean;
+    
+    // start looping with a variable called 'i' the end of the array towards the beginning.
+    for (let i = collection.length; i > 0; i--) {
+        noSwap = true;
+
+        // start an inner loop with a variable called j from the beginning;
+        for (let j = 0; j < collection.length; j++) {
+
+            // if arr[j] is greater then arr[j + 1] swap those two values
+            if (collection[j] > collection[j + 1]) {
+                swap(collection, j, j+1);
+                noSwap = false;
+            }
+        }
+
+        if (noSwap) {
+            break;
+        }
+    }
+
+    return collection;
 }
