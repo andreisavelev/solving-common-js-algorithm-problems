@@ -340,3 +340,24 @@ const selectionSorting = function (collection: Array<any>): Array<any> {
 
     return collection;
 }
+
+/**
+ * Build up the sort by gradually creating a larger left half with is always sorted.
+ * @param collection {array}
+ */
+const insertionSorting = function (collection: Array<any>): Array<any> {
+    for (let i = 1; i < collection.length; i++) {
+        let currentValue = collection[i];
+        let j = i - 1;
+
+        while (j >= 0 && collection[j] > currentValue) {
+            collection[j + 1] = collection[j];
+
+            j--;
+        }
+
+        collection[j + 1] = currentValue;
+    }
+
+    return collection;
+}
