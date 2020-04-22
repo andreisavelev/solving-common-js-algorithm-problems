@@ -291,7 +291,7 @@ const swap = function (array: Array<any>, indexFrom: number, indexTo: number): v
  * @param collection {number[]}
  * @returns {number[]}
  */
-const bubbleSorting = function (collection: Array<any>) : Array<any> {
+const bubbleSorting = function<T> (collection: Array<T>) : Array<T> {
     let noSwap: boolean;
     
     // start looping with a variable called 'i' the end of the array towards the beginning.
@@ -321,7 +321,7 @@ const bubbleSorting = function (collection: Array<any>) : Array<any> {
  * small values into sorted posotion
  * @param collection {array}
  */
-const selectionSorting = function (collection: Array<any>): Array<any> {
+const selectionSorting = function<T> (collection: T[]): T[] {
     
     for (let i = 0; i < collection.length; i++) {
         let smaller = i;
@@ -345,15 +345,15 @@ const selectionSorting = function (collection: Array<any>): Array<any> {
  * Build up the sort by gradually creating a larger left half with is always sorted.
  * @param collection {array}
  */
-const insertionSorting = function (collection: Array<any>): Array<any> {
+const insertionSort = function<T> (collection: T[]): T[] {
+    let currentValue: T;
+    let j: number;
+    
     for (let i = 1; i < collection.length; i++) {
-        let currentValue = collection[i];
-        let j = i - 1;
+        currentValue = collection[i];
 
-        while (j >= 0 && collection[j] > currentValue) {
+        for (j = i - 1; j >= 0 && currentValue < collection[j]; j--) {
             collection[j + 1] = collection[j];
-
-            j--;
         }
 
         collection[j + 1] = currentValue;
