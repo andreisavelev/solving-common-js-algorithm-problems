@@ -1,5 +1,6 @@
-/**
+import merge from './utils/merge';
 
+/**
  * Remove duplicates from a sorted array nums in-place 
  * such that duplicates appeared at most twice and return the new length
  * @param nums {number[]}
