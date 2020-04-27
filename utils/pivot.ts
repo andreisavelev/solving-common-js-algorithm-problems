@@ -29,3 +29,5 @@ const pivot = function (arr: number[], startIndex = 0, endIndex?: number): numbe
 
     return swapIndex;
 }
+
+export default pivot;
