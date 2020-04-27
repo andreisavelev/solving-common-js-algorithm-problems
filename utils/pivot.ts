@@ -11,10 +11,10 @@ import swap from './swap';
  * - Return the pivot index
  * @param arr {array}
  * @param startIndex {number} 
- * @param endIndex {number}
+ * @param endIndex? Helps when the function calls recursively {number}
  * @returns {number}
  */
-const pivot = function (arr: number[], startIndex = 0, endIndex = arr.length - 1): number {
+const pivot = function (arr: number[], startIndex = 0, endIndex?: number): number {
     let pivot: number = arr[startIndex];
     let swapIndex: number = startIndex;
 
