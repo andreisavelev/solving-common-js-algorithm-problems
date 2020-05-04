@@ -1,5 +1,9 @@
 import getDigitCount from './get-digit-count';
 
+/**
+ * Get the max digit count of the given @param nums
+ * @param nums {number[]}
+ */
 const getMostDigitCount = function(nums: number[]): number {
     let maxDigits: number = 0;
 
@@ -8,4 +12,6 @@ const getMostDigitCount = function(nums: number[]): number {
     }
 
     return maxDigits;
-}
+};
+
+export default getMostDigitCount;
