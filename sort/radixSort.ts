@@ -5,12 +5,14 @@ import getDigit from '../utils/get-digit';
  * The Radix Sort function. Full description is in the its body.
  * @param nums {number[]}
  */
-const radixSort = function (nums: number[]): number[] {
+const radixSort = function (nums: number[]): number[][] {
 
     // figure out how many digits the largest number has
     let maxDisgits: number =  getMostDigitCount(nums);
     // will contans an array of array of numbers
     let buckets: Array<Array<number>>;
+    let container: Array<Array<number>> = [];
+    let result: number[][] = [];
 
     // will contains a digit on the given position
     let digit: number;
@@ -28,8 +30,8 @@ const radixSort = function (nums: number[]): number[] {
         }
 
         // replace our existing array with values in our buckets, starting from 0 and going up to 9
-        nums = [].concat(...buckets);
+        result = container.concat(...buckets);
     }
 
-    return nums;
+    return result;
 };

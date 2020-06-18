@@ -4,7 +4,8 @@
   "description": "algorithm, js, ts, JavaScript, TypeScript, radix, sort, search, binary, quick, graphs, trees, AVL-tree, recursion",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/savelevcorr/solving-common-js-algorithm-problems/issues"
   },
-  "homepage": "https://github.com/savelevcorr/solving-common-js-algorithm-problems#readme"
+  "homepage": "https://github.com/savelevcorr/solving-common-js-algorithm-problems#readme",
+  "dependencies": {
+    "typescript": "^3.9.5"
+  }
 }

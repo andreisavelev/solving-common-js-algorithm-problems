@@ -1,5 +1,9 @@
 import merge from './utils/merge';
 
+type ObjectCounter = {
+    [name: string]: number
+}
+
 /**
  * Remove duplicates from a sorted array nums in-place 
  * such that duplicates appeared at most twice and return the new length
@@ -63,7 +67,7 @@ const isAlphaNumeric = function (char: string): boolean {
  */
 const charactersCounter = function (input: string): {[key: string]: number} {
     // Create a container/counter
-    const caractersContainer = {};
+    const caractersContainer: ObjectCounter = {};
     
     // Simples way is the regexp but it might works slowly then charCodeAt checking
     // const letterNumber = /[a-z0-9]/;
@@ -115,8 +119,8 @@ const maxProfit = function(prices: number[]): number {
  * @returns {boolean}
  */
 const validAnagram = function (str1: string, str2: string): boolean {
-    let strCounter1 = {};
-    let strCounter2 = {};
+    let strCounter1: ObjectCounter = {};
+    let strCounter2: ObjectCounter = {};
     
     if (str1.length !== str2.length) {
         return false;
@@ -200,7 +204,7 @@ var containsDuplicate = function(nums: number[]): boolean {
  * @return {number}
  */
 var singleNumber = function(nums: number[]): number {
-    const counter = {};
+    const counter: ObjectCounter = {};
     let result: string = '';
     
     for (let item of nums) {
