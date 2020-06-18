@@ -365,4 +365,24 @@ const insertionSort = function<T> (collection: T[]): T[] {
     }
 
     return collection;
+};
+
+/**
+ * Array chunking
+ */
+function arrayChanks(nums: number[], size: number) {
+    let chunked = [];
+    let last;
+
+    for (let element of nums) {
+        last = chunked[chunked.length - 1];
+
+        if (!last || last.length === size) {
+            chunked.push([element]);
+        } else {
+            last.push(element);
+        }
+    }
+
+    return chunked;
 }
