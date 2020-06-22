@@ -148,6 +148,18 @@ const validAnagram = function (str1: string, str2: string): boolean {
 }
 
 /**
+ * Another function to validate an anagram
+ * @param stringA 
+ * @param stringB 
+ */
+const validAnagram2 = function(stringA: string, stringB: string): boolean {
+    const sortedStringA = stringA.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+    const sortedStringB = stringB.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+
+    return sortedStringA === sortedStringB;
+}
+
+/**
  * Given an array, rotate the array to the right by k steps, where k is non-negative. 
  * Time complexity is O(n);
  * @param {number[]} nums
