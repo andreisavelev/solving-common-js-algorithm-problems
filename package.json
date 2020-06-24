@@ -1,0 +1,23 @@
+{
+  "name": "solving-common-js-algorithm-problems",
+  "version": "1.0.0",
+  "description": "algorithm, js, ts, JavaScript, TypeScript, radix, sort, search, binary, quick, graphs, trees, AVL-tree, recursion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savelevcorr/solving-common-js-algorithm-problems.git"
+  },
+  "author": "Andrew Savelev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/savelevcorr/solving-common-js-algorithm-problems/issues"
+  },
+  "homepage": "https://github.com/savelevcorr/solving-common-js-algorithm-problems#readme",
+  "dependencies": {
+    "typescript": "^3.9.5"
+  }
+}

@@ -1,35 +1,39 @@
 import merge from './utils/merge';
 
+type ObjectCounter = {
+    [name: string]: number
+}
+
 /**
  * Remove duplicates from a sorted array nums in-place 
  * such that duplicates appeared at most twice and return the new length
  * @param nums {number[]}
  * @returns {number}
  */
-const removeDuplicates = function(nums: number[]): number {
+const removeDuplicates = function (nums: number[]): number {
     let counter = 0;
     // if we have to no change the given array then just crate a new copy
     // const newNums = [...nums];
-    
+
     for (let i = 0; i < nums.length; i++) {
         // Found a pair
         if (nums[i] === nums[i + 1]) {
-            
+
             // Let's leave the found pair behinde and 
             // go forward incrementing the counter every time when we get the same number
-            for (let j = i + 2; j < nums.length; j++ ) {
+            for (let j = i + 2; j < nums.length; j++) {
                 if (nums[j] === nums[i]) {
                     counter += 1;
                 }
             }
-            
+
             // remove all duplicates since the last number of the fist pair
             nums.splice(i + 1, counter);
         }
-        
+
         counter = 0;
     }
-    
+
     return nums.length;
 };
 
@@ -61,18 +65,18 @@ const isAlphaNumeric = function (char: string): boolean {
  * @param input {string}
  * @returns {object}
  */
-const charactersCounter = function (input: string): {[key: string]: number} {
+const charactersCounter = function (input: string): { [key: string]: number } {
     // Create a container/counter
-    const caractersContainer = {};
-    
+    const caractersContainer: ObjectCounter = {};
+
     // Simples way is the regexp but it might works slowly then charCodeAt checking
     // const letterNumber = /[a-z0-9]/;
 
     // Do some logic only if the input is not empty
     if (input.length) {
-        for  (let char of input) {
+        for (let char of input) {
             char = char.toLowerCase();
-    
+
             // Do something only wnen the character is a letter/number
             // Using function with charCodeAt checking under the hood
             if (isAlphaNumeric(char)) {
@@ -96,15 +100,15 @@ const charactersCounter = function (input: string): {[key: string]: number} {
  * @param {number[]} prices
  * @return {number}
  */
-const maxProfit = function(prices: number[]): number {
+const maxProfit = function (prices: number[]): number {
     let result = 0;
-    
-   for (let i = 0; i < prices.length; i++) {
-       if (prices[i] > prices[i - 1]) {
+
+    for (let i = 0; i < prices.length; i++) {
+        if (prices[i] > prices[i - 1]) {
             result += prices[i] - prices[i - 1];
         }
-   }
-    
+    }
+
     return result;
 };
 
@@ -115,32 +119,44 @@ const maxProfit = function(prices: number[]): number {
  * @returns {boolean}
  */
 const validAnagram = function (str1: string, str2: string): boolean {
-    let strCounter1 = {};
-    let strCounter2 = {};
-    
+    let strCounter1: ObjectCounter = {};
+    let strCounter2: ObjectCounter = {};
+
     if (str1.length !== str2.length) {
         return false;
     }
-    
+
     for (let char of str1) {
         strCounter1[char] = (strCounter1[char] || 0) + 1;
     }
-    
+
     for (let char of str2) {
         strCounter2[char] = (strCounter2[char] || 0) + 1;
     }
-    
+
     for (let key in strCounter1) {
         if (!(key in strCounter2)) {
             return false;
         }
-        
+
         if (strCounter1[key] !== strCounter2[key]) {
             return false;
         }
     }
-    
+
     return true;
+}
+
+/**
+ * Another function to validate an anagram
+ * @param stringA 
+ * @param stringB 
+ */
+const validAnagram2 = function (stringA: string, stringB: string): boolean {
+    const sortedStringA = stringA.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+    const sortedStringB = stringB.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+
+    return sortedStringA === sortedStringB;
 }
 
 /**
@@ -150,14 +166,14 @@ const validAnagram = function (str1: string, str2: string): boolean {
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-var rotate = function(nums: number[], k: number): void {
+var rotate = function (nums: number[], k: number): void {
     let arrEnd = nums.splice(nums.length - k);
     let arrStart = nums.splice(0);
-    
+
     for (let i = 0; i < arrEnd.length; i++) {
         nums.push(arrEnd[i])
     }
-    
+
     nums.push(...arrStart);
 };
 
@@ -168,18 +184,18 @@ var rotate = function(nums: number[], k: number): void {
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-var rotate2 = function(nums: number[], k: number): void {
+var rotate2 = function (nums: number[], k: number): void {
     let len = nums.length - k;
-    
+
     if (k > nums.length) {
         k = k - nums.length;
         len = nums.length - k;
     }
-    
+
     for (let i = 0; i < len; i++) {
         nums.push(nums[i]);
     }
-    
+
     nums.splice(0, len);
 };
 
@@ -188,9 +204,9 @@ var rotate2 = function(nums: number[], k: number): void {
  * @param {number[]} nums
  * @return {boolean}
  */
-var containsDuplicate = function(nums: number[]): boolean {
+var containsDuplicate = function (nums: number[]): boolean {
     let set = new Set(nums);
-    
+
     return set.size !== nums.length
 };
 
@@ -199,15 +215,15 @@ var containsDuplicate = function(nums: number[]): boolean {
  * @param {number[]} nums
  * @return {number}
  */
-var singleNumber = function(nums: number[]): number {
-    const counter = {};
+var singleNumber = function (nums: number[]): number {
+    const counter: ObjectCounter = {};
     let result: string = '';
-    
+
     for (let item of nums) {
         counter[item] = (counter[item] || 0) + 1;
     }
-    
-    
+
+
     for (let key in counter) {
         if (counter.hasOwnProperty(key)) {
             if (counter[key] === 1) {
@@ -215,7 +231,7 @@ var singleNumber = function(nums: number[]): number {
             }
         }
     }
-    
+
     return +result;
 };
 
@@ -223,9 +239,9 @@ var singleNumber = function(nums: number[]): number {
  * Should return the first pair wich sum as is zero as an array or return undefind.
  * @param arr {number[]}
  */
-const sumZero = function(arr: number[]): [number, number] | undefined {
+const sumZero = function (arr: number[]): [number, number] | undefined {
     let left = 0;
-    let right = arr.length -1;
+    let right = arr.length - 1;
     let sum: number;
 
     while (left < right) {
@@ -233,7 +249,7 @@ const sumZero = function(arr: number[]): [number, number] | undefined {
 
         if (sum === 0) {
             return [arr[left], arr[right]];
-        } else if (sum > 0){
+        } else if (sum > 0) {
             right--;
         } else {
             left--;
@@ -278,12 +294,12 @@ const countUnicValues = function (array: number[]): number {
  */
 const swap = function (array: Array<any>, indexFrom: number, indexTo: number): void {
     [
-        array[indexFrom], 
+        array[indexFrom],
         array[indexTo]
     ] = [
-        array[indexTo], 
-        array[indexFrom]
-    ];
+            array[indexTo],
+            array[indexFrom]
+        ];
 };
 
 
@@ -292,9 +308,9 @@ const swap = function (array: Array<any>, indexFrom: number, indexTo: number): v
  * @param collection {number[]}
  * @returns {number[]}
  */
-const bubbleSorting = function<T> (collection: Array<T>) : Array<T> {
+const bubbleSorting = function <T>(collection: Array<T>): Array<T> {
     let noSwap: boolean;
-    
+
     // start looping with a variable called 'i' the end of the array towards the beginning.
     for (let i = collection.length; i > 0; i--) {
         noSwap = true;
@@ -304,7 +320,7 @@ const bubbleSorting = function<T> (collection: Array<T>) : Array<T> {
 
             // if arr[j] is greater then arr[j + 1] swap those two values
             if (collection[j] > collection[j + 1]) {
-                swap(collection, j, j+1);
+                swap(collection, j, j + 1);
                 noSwap = false;
             }
         }
@@ -322,12 +338,12 @@ const bubbleSorting = function<T> (collection: Array<T>) : Array<T> {
  * small values into sorted posotion
  * @param collection {array}
  */
-const selectionSorting = function<T> (collection: T[]): T[] {
-    
+const selectionSorting = function <T>(collection: T[]): T[] {
+
     for (let i = 0; i < collection.length; i++) {
         let smaller = i;
 
-        for (let j = i + 1; j < collection.length; j ++) {
+        for (let j = i + 1; j < collection.length; j++) {
             if (collection[smaller] > collection[j]) {
                 smaller = j;
             }
@@ -346,10 +362,10 @@ const selectionSorting = function<T> (collection: T[]): T[] {
  * Build up the sort by gradually creating a larger left half with is always sorted.
  * @param collection {array}
  */
-const insertionSort = function<T> (collection: T[]): T[] {
+const insertionSort = function <T>(collection: T[]): T[] {
     let currentValue: T;
     let j: number;
-    
+
     for (let i = 1; i < collection.length; i++) {
         currentValue = collection[i];
 
@@ -361,4 +377,24 @@ const insertionSort = function<T> (collection: T[]): T[] {
     }
 
     return collection;
+};
+
+/**
+ * Array chunking
+ */
+function arrayChanks(nums: number[], size: number) {
+    let chunked = [];
+    let last;
+
+    for (let element of nums) {
+        last = chunked[chunked.length - 1];
+
+        if (!last || last.length === size) {
+            chunked.push([element]);
+        } else {
+            last.push(element);
+        }
+    }
+
+    return chunked;
 }
