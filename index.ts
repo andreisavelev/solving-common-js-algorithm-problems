@@ -1,11 +1,9 @@
-import merge from './utils/merge';
-
 type ObjectCounter = {
     [name: string]: number
 }
 
 /**
- * Remove duplicates from a sorted array nums in-place 
+ * Remove duplicates from a sorted array nums in-place
  * such that duplicates appeared at most twice and return the new length
  * @param nums {number[]}
  * @returns {number}
@@ -19,7 +17,7 @@ const removeDuplicates = function (nums: number[]): number {
         // Found a pair
         if (nums[i] === nums[i + 1]) {
 
-            // Let's leave the found pair behinde and 
+            // Let's leave the found pair behinde and
             // go forward incrementing the counter every time when we get the same number
             for (let j = i + 2; j < nums.length; j++) {
                 if (nums[j] === nums[i]) {
@@ -61,13 +59,13 @@ const isAlphaNumeric = function (char: string): boolean {
  * Function that takes a string and returns a count of each characters in the string.
  * The result should be an object that contains characters as a key and a count of it's characters as a number
  * Non-letter/number characters should be omitted
- * 
+ *
  * @param input {string}
  * @returns {object}
  */
 const charactersCounter = function (input: string): { [key: string]: number } {
     // Create a container/counter
-    const caractersContainer: ObjectCounter = {};
+    const charactersContainer: ObjectCounter = {};
 
     // Simples way is the regexp but it might works slowly then charCodeAt checking
     // const letterNumber = /[a-z0-9]/;
@@ -80,22 +78,22 @@ const charactersCounter = function (input: string): { [key: string]: number } {
             // Do something only wnen the character is a letter/number
             // Using function with charCodeAt checking under the hood
             if (isAlphaNumeric(char)) {
-                if (!caractersContainer.hasOwnProperty(char)) {
-                    caractersContainer[char] = 1;
+                if (!charactersContainer.hasOwnProperty(char)) {
+                    charactersContainer[char] = 1;
                 } else {
-                    caractersContainer[char]++
+                    charactersContainer[char]++
                 }
             }
         }
     }
 
     // Return result
-    return caractersContainer;
+    return charactersContainer;
 };
 
 /**
  * Say you have an array for which the ith element is the price of a given stock on day i.
- * Design an algorithm to find the maximum profit. 
+ * Design an algorithm to find the maximum profit.
  * You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times).
  * @param {number[]} prices
  * @return {number}
@@ -149,8 +147,8 @@ const validAnagram = function (str1: string, str2: string): boolean {
 
 /**
  * Another function to validate an anagram
- * @param stringA 
- * @param stringB 
+ * @param stringA
+ * @param stringB
  */
 const validAnagram2 = function (stringA: string, stringB: string): boolean {
     const sortedStringA = stringA.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
@@ -160,7 +158,7 @@ const validAnagram2 = function (stringA: string, stringB: string): boolean {
 }
 
 /**
- * Given an array, rotate the array to the right by k steps, where k is non-negative. 
+ * Given an array, rotate the array to the right by k steps, where k is non-negative.
  * Time complexity is O(n);
  * @param {number[]} nums
  * @param {number} k
@@ -282,7 +280,7 @@ const countUnicValues = function (array: number[]): number {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Sorting 
+// Sorting
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
