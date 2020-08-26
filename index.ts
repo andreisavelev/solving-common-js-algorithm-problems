@@ -17,7 +17,7 @@ const removeDuplicates = function (nums: number[]): number {
         // Found a pair
         if (nums[i] === nums[i + 1]) {
 
-            // Let's leave the found pair behinde and
+            // Let's leave the found pair behind and
             // go forward incrementing the counter every time when we get the same number
             for (let j = i + 2; j < nums.length; j++) {
                 if (nums[j] === nums[i]) {
@@ -137,7 +137,7 @@ const validAnagram = function (str1: string, str2: string): boolean {
             return false;
         }
 
-        if (strCounter1[key] !== strCounter2[key]) {
+        if (strCounter1.hasOwnProperty(key) && strCounter1[key] !== strCounter2[key]) {
             return false;
         }
     }
@@ -151,8 +151,16 @@ const validAnagram = function (str1: string, str2: string): boolean {
  * @param stringB
  */
 const validAnagram2 = function (stringA: string, stringB: string): boolean {
-    const sortedStringA = stringA.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
-    const sortedStringB = stringB.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+    const sortedStringA = stringA.replace(/[^\w]/g, '')
+        .toLowerCase()
+        .split('')
+        .sort()
+        .join('');
+    const sortedStringB = stringB.replace(/[^\w]/g, '')
+        .toLowerCase()
+        .split('')
+        .sort()
+        .join('');
 
     return sortedStringA === sortedStringB;
 }
@@ -177,7 +185,7 @@ var rotate = function (nums: number[], k: number): void {
 
 /**
  * Given an array, rotate the array to the right by k steps, where k is non-negative.
- * Timne complexity is O(lig n);
+ * Time complexity is O(lig n);
  * @param {number[]} nums
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
@@ -234,7 +242,7 @@ var singleNumber = function (nums: number[]): number {
 };
 
 /**
- * Should return the first pair wich sum as is zero as an array or return undefind.
+ * Should return the first pair which sum as is zero as an array or return undefined.
  * @param arr {number[]}
  */
 const sumZero = function (arr: number[]): [number, number] | undefined {
@@ -262,7 +270,7 @@ const sumZero = function (arr: number[]): [number, number] | undefined {
  * @param array {number[]}
  * @returns {number}
  */
-const countUnicValues = function (array: number[]): number {
+const countUniqueValues = function (array: number[]): number {
     let first = 0;
 
     if (!array.length) {
@@ -309,7 +317,7 @@ const swap = function (array: Array<any>, indexFrom: number, indexTo: number): v
 const bubbleSorting = function <T>(collection: Array<T>): Array<T> {
     let noSwap: boolean;
 
-    // start looping with a variable called 'i' the end of the array towards the beginning.
+    // start looping with a variable called 'i' from the end of the array towards the beginning.
     for (let i = collection.length; i > 0; i--) {
         noSwap = true;
 
@@ -332,8 +340,8 @@ const bubbleSorting = function <T>(collection: Array<T>): Array<T> {
 }
 
 /**
- * Similar to bubble sorting, but instad of first placing large values into sorted position, it places
- * small values into sorted posotion
+ * Similar to bubble sorting, but instead of first placing large values into sorted position, it places
+ * small values into sorted position
  * @param collection {array}
  */
 const selectionSorting = function <T>(collection: T[]): T[] {
@@ -357,7 +365,7 @@ const selectionSorting = function <T>(collection: T[]): T[] {
 }
 
 /**
- * Build up the sort by gradually creating a larger left half with is always sorted.
+ * Build up the sort by gradually creating a larger left half which is always sorted.
  * @param collection {array}
  */
 const insertionSort = function <T>(collection: T[]): T[] {
@@ -380,7 +388,7 @@ const insertionSort = function <T>(collection: T[]): T[] {
 /**
  * Array chunking
  */
-function arrayChanks(nums: number[], size: number) {
+function arrayChunks(nums: number[], size: number) {
     let chunked = [];
     let last;
 
