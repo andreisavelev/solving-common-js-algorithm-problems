@@ -4,7 +4,8 @@
   "description": "algorithm, js, ts, JavaScript, TypeScript, radix, sort, search, binary, quick, graphs, trees, AVL-tree, recursion",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
     "build": "tsc",
     "dev": "tsc --watch"
   },
@@ -22,6 +23,9 @@
     "typescript": "^3.9.5"
   },
   "devDependencies": {
-    "prettier": "2.1.1"
+    "@types/jest": "^26.0.13",
+    "jest": "^26.4.2",
+    "prettier": "2.1.1",
+    "ts-jest": "^26.3.0"
   }
 }

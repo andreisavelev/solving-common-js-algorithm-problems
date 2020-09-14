@@ -1,10 +1,18 @@
+/**
+ * @class
+ * It stores the peace of data - value
+ * and a reference to the next node <b><i>next</i></b>
+ * @author Andrew Savelev <savelevcorr@gmail.com>
+ * @version 1.0.0
+ */
 class CustomNode<T> {
-    public next: null | object = null;
-    public value: T;
+  public next: null | CustomNode<any> = null;
+  public value: T;
 
-    constructor(value: T) {
-        this.value = value;
-    }
+  constructor(value: T) {
+    this.value = value;
+    this.next = null;
+  }
 }
 
 export default CustomNode;

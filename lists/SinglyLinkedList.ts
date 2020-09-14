@@ -1,5 +1,11 @@
 import CustomNode from "../utils/node";
 
+/**
+ * Singly Linked List
+ * @class
+ * @author Andrew Savelev <https://github.com/savelevcorr>
+ * @version 0.0.1
+ */
 class SinglyLinkedList {
   head: null | CustomNode<any>;
   tail: null | CustomNode<any>;
@@ -11,27 +17,128 @@ class SinglyLinkedList {
     this.length = 0;
   }
 
-  push(value: unknown): this {
-    // Create a new node using the value passed to the function;
-    const node = new CustomNode(value);
+  /**
+   * Push a value in the list.
+   * <ol>
+   *     <li>Create a new node using the value passed as an argument</li>
+   *     <li>
+   *         If there is no head property on the list. set the head and tail
+   *         to be the newly created node
+   *     </li>
+   *     <li>
+   *         Otherwise set the next property on the tail to be the new node
+   *         and set the tail property on the list to be the newly created node
+   *     </li>
+   *     <li>Increment the length by 1</li>
+   *  </ol>
+   * @param {any} value - a peace of data
+   */
+  push(value: unknown) {
+    const newNode = new CustomNode(value);
 
-    // If there is no head proprty on the list,
-    // set the head and tail to be the newly created node
     if (!this.head) {
-      this.head = node;
-      this.tail = node;
-
-      // Otherwise set the next property on the list to be the node
-      // and set the tail property on the list to be the newly created node;
+      this.head = newNode;
+      this.tail = newNode;
     } else {
-      this.tail = node;
-      this.head.next = node;
+      this.tail!.next = newNode;
+      this.tail = newNode;
     }
 
-    // Increment the length by one
-    this.length += 1;
+    this.length++;
+  }
 
-    // return the Linked List
+  /**
+   * Remove a node from the end of the Linked List
+   * <ol>
+   *     <li>If there are no nodes in the list, return undefined</li>
+   *     <li>Otherwise, loop through the list until you reach the tail</li>
+   *     <li>Set the next property of the 2nd to last node to be null</li>
+   *     <li>Set the tail to be the 2nd to last node</li>
+   *     <li>Decrement the length of the list by 1</li>
+   *     <li>Return the value of the node removed</li>
+   * </ol>
+   */
+  pop(): CustomNode<unknown> | unknown {
+    let current: CustomNode<unknown> | null = this.head;
+    let newTail = current;
+
+    if (!this.length) {
+      return undefined;
+    }
+
+    while (current!.next) {
+      newTail = current;
+      // @ts-ignore
+      current = current!.next;
+    }
+
+    this.tail = newTail;
+    // @ts-ignore
+    this.tail?.next = null;
+    this.length--;
+
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+
+    return current!.value;
+  }
+
+  /**
+   * <ol>
+   *     <li>If there are no nodes, return undefined</li>
+   *     <li>Store the current head property in a variable</li>
+   *     <li>Set the current head property to be current's head next property</li>
+   *     <li>Decrement the length by 1</li>
+   *     <li>Return the value of the node removed</li>
+   * </ol>
+   */
+  shift() {
+    if (!this.head) {
+      return undefined;
+    }
+
+    let head: CustomNode<any> | null = this!.head;
+    this.head = head!.next as CustomNode<any>;
+
+    this.length--;
+
+    return head;
+  }
+
+  /**
+   * Set a new node to be the new head of the list
+   * <ol>
+   *     <li>Create a new node using the value passed to the function</li>
+   *     <li>If there is no head property on the list, set the head and tail to be the newly created node</li>
+   *     <li>
+   *         Otherwise set the newly created node's <b><i>next</i></b> property
+   *         to be the current head property on the list
+   *     </li>
+   *     <li>Set the head property on the list to be that newly created node</li>
+   *     <li>Increment the length property by 1</li>
+   *     <li>Return the linked list</li>
+   * </ol>
+   * @since 1.0.0
+   * @param value - a peace of any data
+   */
+  unshift(value: unknown): this {
+    const newHead = new CustomNode(value);
+
+    if (!this.head) {
+      this.head = newHead;
+      this.tail = newHead;
+    } else {
+      newHead.next = this.head;
+
+      this.head = newHead;
+    }
+
+    this.length++;
+
     return this;
   }
 }
+
+export default SinglyLinkedList;
