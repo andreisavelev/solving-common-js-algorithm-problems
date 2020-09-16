@@ -1,14 +1,16 @@
 import CustomNode from "../utils/node";
 
+type NodeType = null | CustomNode<any>;
+
 /**
  * Singly Linked List
  * @class
  * @author Andrew Savelev <https://github.com/savelevcorr>
- * @version 0.0.1
+ * @version 1.0.0
  */
 class SinglyLinkedList {
-  head: null | CustomNode<any>;
-  tail: null | CustomNode<any>;
+  head: NodeType;
+  tail: NodeType;
   length: number;
 
   constructor() {
@@ -58,12 +60,12 @@ class SinglyLinkedList {
    *     <li>Return the value of the node removed</li>
    * </ol>
    */
-  pop(): CustomNode<unknown> | unknown {
-    let current: CustomNode<unknown> | null = this.head;
+  pop(): NodeType {
+    let current: NodeType = this.head;
     let newTail = current;
 
     if (!this.length) {
-      return undefined;
+      return null;
     }
 
     while (current!.next) {
@@ -81,7 +83,7 @@ class SinglyLinkedList {
       this.tail = null;
     }
 
-    return current!.value;
+    return current;
   }
 
   /**
@@ -93,12 +95,12 @@ class SinglyLinkedList {
    *     <li>Return the value of the node removed</li>
    * </ol>
    */
-  shift() {
+  shift(): NodeType {
     if (!this.head) {
-      return undefined;
+      return null;
     }
 
-    let head: CustomNode<any> | null = this!.head;
+    let head: NodeType = this!.head;
     this.head = head!.next as CustomNode<any>;
 
     this.length--;
@@ -152,15 +154,15 @@ class SinglyLinkedList {
    * @since 1.0.0
    * @param {number} index
    */
-  get(index: number): CustomNode<any> | null {
-    let current: CustomNode<any> | null = this.head;
+  get(index: number): NodeType {
+    let current: NodeType = this.head;
     let counter = 0;
     if (index < 0 || index >= this.length) {
       return null;
     }
 
     while (counter !== index) {
-      current = current!.next;
+      current = current!.next as CustomNode<any>;
       counter++;
     }
 
@@ -171,7 +173,7 @@ class SinglyLinkedList {
    * Changing the <b><i>value</i></b> of a node
    * based on it's position in the List;
    * <ol>
-   *     <li>Use your <b><i>get</i></b> function to find the specific node</li>
+   *     <li>Use [get]{@link SinglyLinkedList#get} function to find the specific node</li>
    *     <li>If the node is not found, return false</li>
    *     <li>
    *         If the node is found, set the value of that node
@@ -197,17 +199,17 @@ class SinglyLinkedList {
    * Adding a node to the Linked List at a <b><i>specific</i></b> position
    * <ol>
    *     <li>
-   *         If the index is less than zero or greater than the length, return false
+   *         If the index is less than zero or greater than the [length]{@link SinglyLinkedList#length}, return false
    *     </li>
    *     <li>
    *         If the index is the same as the length,
-   *         <b><i>push</i></b> a new node to the end of the list
+   *         [push]{@link SinglyLinkedList#push} a new node to the end of the list
    *     </li>
    *     <li>
-   *         If the index is 0, <b><i>unshift</i></b> a new node to the start of the list
+   *         If the index is 0, [unshift]{@link SinglyLinkedList#unshift} a new node to the start of the list
    *     </li>
    *     <li>
-   *         Otherwise, using the get method, access the node at the index - 1
+   *         Otherwise, using the [get]{@link SinglyLinkedList#get} method, access the node at the index - 1
    *     </li>
    *     <li>
    *         Set the next property on that node to be the new node
@@ -216,7 +218,7 @@ class SinglyLinkedList {
    *         Set the next property on the new node to be the previous next
    *     </li>
    *     <li>
-   *         Increment the length
+   *         Increment the [length]{@link SinglyLinkedList#length}
    *     </li>
    *     <li>
    *         Return true
@@ -245,6 +247,52 @@ class SinglyLinkedList {
       this.length++;
 
       return true;
+    }
+  }
+
+  /**
+   * Removing a node form the Linked List at a <b><i>specific</i></b> position
+   * <ol>
+   *     <li>
+   *         If the index if less than zero o greater than the [this.length]{@link SinglyLinkedList#length}, return undefined
+   *     </li>
+   *     <li>
+   *         If the index is the same as the length -1, use [this.pop]{@link SinglyLinkedList#pop}
+   *     </li>
+   *     <li>
+   *         If the index is zero, [this.shift]{@link SinglyLinkedList#shift}
+   *     </li>
+   *     <li>
+   *         Otherwise, using the [this.get]{@link SinglyLinkedList#get} method, access the node at the index - 1
+   *     </li>
+   *     <li>
+   *         Set the next property on that to be the next of the next node
+   *     </li>
+   *     <li>
+   *        Decrement the length
+   *     </li>
+   *     <li>
+   *         Return the value of the node removed
+   *     </li>
+   * </ol>
+   * @param {number} index
+   */
+  remove(index: number): NodeType {
+    if (index < 0 || index >= this.length) {
+      return null;
+    } else if (index === this.length - 1) {
+      return this.pop();
+    } else if (index === 0) {
+      return this.shift();
+    } else {
+      let previousNode = this.get(index - 1);
+      let removed = previousNode!.next as CustomNode<any>;
+
+      previousNode!.next = removed?.next;
+
+      this.length--;
+
+      return removed;
     }
   }
 }

@@ -25,14 +25,14 @@ describe("SinglyLinkedList", () => {
   it("Should be able to pop the node form the list", () => {
     let popped = list!.pop();
 
-    expect(popped).toBe("world");
+    expect(popped?.value).toBe("world");
     expect(list?.length).toBe(1);
   });
 
   it("Should remove a head", () => {
-    list!.shift();
+    let result = list!.shift();
 
-    expect(list!.head?.value).toBe("world");
+    expect(result?.value).toBe("Hello");
   });
 
   it("Should set a new node to be the head of the list", () => {
@@ -155,6 +155,14 @@ describe("SinglyLinkedList", () => {
       list!.insert(1, NEW_START_VALUE);
 
       expect(list?.length).toBe(PREV_LENGTH + 1);
+    });
+  });
+
+  describe("-> remove", () => {
+    it("Should return null if the index is less than zero", () => {
+      let result = list!.remove(-1);
+
+      expect(result).toBeNull();
     });
   });
 });
