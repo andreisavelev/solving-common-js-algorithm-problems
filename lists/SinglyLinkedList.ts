@@ -73,8 +73,7 @@ class SinglyLinkedList {
     }
 
     this.tail = newTail;
-    // @ts-ignore
-    this.tail?.next = null;
+    this.tail!.next = null;
     this.length--;
 
     if (this.length === 0) {
