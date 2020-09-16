@@ -138,6 +138,115 @@ class SinglyLinkedList {
 
     return this;
   }
+
+  /**
+   * Get an element by index
+   * <ol>
+   *     <li>
+   *         If the index is less than zero or greater than
+   *         or equal to the length of the list return <b><i>null</i></b>
+   *     </li>
+   *     <li>Loop through the list until you reach the index</li>
+   *     <li>Return the node at that specific index</li>
+   * </ol>
+   * @since 1.0.0
+   * @param {number} index
+   */
+  get(index: number): CustomNode<any> | null {
+    let current: CustomNode<any> | null = this.head;
+    let counter = 0;
+    if (index < 0 || index >= this.length) {
+      return null;
+    }
+
+    while (counter !== index) {
+      current = current!.next;
+      counter++;
+    }
+
+    return current;
+  }
+
+  /**
+   * Changing the <b><i>value</i></b> of a node
+   * based on it's position in the List;
+   * <ol>
+   *     <li>Use your <b><i>get</i></b> function to find the specific node</li>
+   *     <li>If the node is not found, return false</li>
+   *     <li>
+   *         If the node is found, set the value of that node
+   *         to be the value passed to the function and return true
+   *     </li>
+   * </ol>
+   * @param {number} index
+   * @param {any} value
+   * @return {boolean}
+   */
+  set(index: number, value: unknown): boolean {
+    const node = this.get(index);
+
+    if (!node) {
+      return false;
+    }
+
+    node.value = value;
+    return true;
+  }
+
+  /**
+   * Adding a node to the Linked List at a <b><i>specific</i></b> position
+   * <ol>
+   *     <li>
+   *         If the index is less than zero or greater than the length, return false
+   *     </li>
+   *     <li>
+   *         If the index is the same as the length,
+   *         <b><i>push</i></b> a new node to the end of the list
+   *     </li>
+   *     <li>
+   *         If the index is 0, <b><i>unshift</i></b> a new node to the start of the list
+   *     </li>
+   *     <li>
+   *         Otherwise, using the get method, access the node at the index - 1
+   *     </li>
+   *     <li>
+   *         Set the next property on that node to be the new node
+   *     </li>
+   *     <li>
+   *         Set the next property on the new node to be the previous next
+   *     </li>
+   *     <li>
+   *         Increment the length
+   *     </li>
+   *     <li>
+   *         Return true
+   *     </li>
+   * </ol>
+   * @param index
+   * @param value
+   */
+  insert(index: number, value: unknown): boolean {
+    if (index < 0 || index > this.length) {
+      return false;
+    } else if (index === 0) {
+      this.unshift(value);
+      return true;
+    } else if (index === this.length) {
+      this.push(value);
+      return true;
+    } else {
+      const node = this.get(index - 1);
+      const prevNext = node!.next;
+      const newNode = new CustomNode(value);
+
+      node!.next = newNode;
+      newNode.next = prevNext;
+
+      this.length++;
+
+      return true;
+    }
+  }
 }
 
 export default SinglyLinkedList;
