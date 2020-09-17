@@ -295,6 +295,50 @@ class SinglyLinkedList {
       return removed;
     }
   }
+
+  /**
+   * Reversing the Linked List in place
+   * <ol>
+   *     <li>Swap the head and tail</li>
+   *     <li>Create a variable called next</li>
+   *     <li>Create a variable called prev</li>
+   *     <li>
+   *         Create a variable called node and initialize it
+   *         to the [this.head]{@link SinglyLinkedList#head} property
+   *     </li>
+   *     <li>Loop through the list</li>
+   *     <li>
+   *         Set next to be the next property on whatever node is
+   *     </li>
+   *     <li>
+   *         Set the next property on the node to be whatever prev is
+   *     </li>
+   *     <li>
+   *         Set next to be the next property on whatever node is
+   *     </li>
+   *     <li>
+   *         Set the prev to be the value of the node variable
+   *     </li>
+   *     <li>
+   *         Set the node variable to be the value of the next variable
+   *     </li>
+   * </ol>
+   */
+  reverse() {
+    let node: NodeType = this.head;
+    let prev: NodeType = null;
+    let next: NodeType;
+
+    this.head = this.tail;
+    this.tail = node;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node!.next;
+      node!.next = prev;
+      prev = node;
+      node = next;
+    }
+  }
 }
 
 export default SinglyLinkedList;

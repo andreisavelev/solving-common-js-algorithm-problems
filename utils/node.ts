@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 class CustomNode<T> {
-  public next: CustomNode<any> | null | undefined = null;
+  public next: CustomNode<any> | null = null;
   public value: T;
 
   constructor(value: T) {
