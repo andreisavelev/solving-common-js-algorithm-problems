@@ -1,12 +1,10 @@
 /**
- * @class
  * It stores the peace of data - value
- * and a reference to the next node <b><i>next</i></b>
- * @author Andrew Savelev <savelevcorr@gmail.com>
- * @version 1.0.0
+ * and a reference to the next node in the <b><i>next</i></b> field
+ * @author Andrei Savelev <savelevcorr@gmail.com>
  */
-class CustomNode<T> {
-  public next: CustomNode<any> | null = null;
+class Node<T> {
+  public next: Node<T> | null;
   public value: T;
 
   constructor(value: T) {
@@ -15,4 +13,4 @@ class CustomNode<T> {
   }
 }
 
-export default CustomNode;
+export default Node;
