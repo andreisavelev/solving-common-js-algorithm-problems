@@ -1,13 +1,12 @@
 import SinglyLinkedList from "../SinglyLinkedList";
-import CustomNode from "../../utils/node";
 
 describe("SinglyLinkedList", () => {
   let list: SinglyLinkedList | null;
 
   beforeEach(() => {
     list = new SinglyLinkedList();
-    list!.push("Hello");
-    list!.push("world");
+    list.push("Hello");
+    list.push("world");
   });
   afterEach(() => {
     list = null;
@@ -86,10 +85,9 @@ describe("SinglyLinkedList", () => {
 
     it("Should update the node according to the value passed to the function", () => {
       const NEW_VALUE = "Epam!";
-      const result = list!.set(1, NEW_VALUE);
-      const node = list!.get(1);
+      list?.set(1, NEW_VALUE);
 
-      expect(node!.value).toBe(NEW_VALUE);
+      expect(list!.get(1)?.value).toBe(NEW_VALUE);
     });
   });
 
@@ -158,11 +156,11 @@ describe("SinglyLinkedList", () => {
     });
   });
 
-  describe("-> remove", () => {
-    it("Should return null if the index is less than zero", () => {
-      let result = list!.remove(-1);
+  // describe("-> remove", () => {
+  //   it("Should return null if the index is less than zero", () => {
+  //     let result = list!.remove(-1);
 
-      expect(result).toBeNull();
-    });
-  });
+  //     expect(result).toBeNull();
+  //   });
+  // });
 });

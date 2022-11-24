@@ -29,10 +29,11 @@ class SinglyLinkedList implements ISinglyLinkedList {
     if (this.length === 0) {
       this.head = node;
       this.tail = node;
+      this.length = 1;
     } else {
       this.tail!.next = node;
       this.tail = node;
-      this.length += 1;
+      this.incrementListLength();
     }
 
     return this;
@@ -61,7 +62,7 @@ class SinglyLinkedList implements ISinglyLinkedList {
 
     this.tail = newTail;
     this.tail!.next = null
-    this.length =- 1;
+    this.decrementListLength();
 
     return current
   }
@@ -71,7 +72,7 @@ class SinglyLinkedList implements ISinglyLinkedList {
       const currentHead = this.head;
 
       this.head = currentHead!.next;
-      this.length =- 1;
+      this.decrementListLength();
 
       return currentHead;
     }
@@ -122,8 +123,49 @@ class SinglyLinkedList implements ISinglyLinkedList {
     return current;
   }
 
+  set(index: number, value: string): boolean {
+    const node = this.get(index);
+
+    if (!node) {
+      return false;
+    }
+
+    node.value = value;
+    return true;
+  }
+
+  insert(index: number, value: string):boolean {
+    if (index < 0 || index > this.length) {
+      return false;
+    }
+
+    if (index === 0) {
+      this.unshift(value);
+      return true;
+    }
+
+    if (index === this.length) {
+      this.push(value);
+      return true;
+    }
+
+    const node = this.get(index - 1);
+    const newNode = new Node(value);
+    const nodeNext = node!.next;
+
+    node!.next = newNode;
+    newNode.next = nodeNext;
+    this.incrementListLength();
+
+    return true;
+  }
+
   private incrementListLength() {
     this.length += 1;
+  }
+
+  private decrementListLength() {
+    this.length -= 1;
   }
 }
 
