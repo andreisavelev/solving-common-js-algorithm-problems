@@ -10,6 +10,10 @@ interface ISinglyLinkedList {
   push(value: unknown): ISinglyLinkedList
   pop(): NodeType | undefined
   shift(): NodeType | undefined
+  push(value: string): SinglyLinkedList
+  get(index: number): NodeType
+  set(index: number, value: string): boolean
+  insert(index: number, value: string): boolean
 }
 
 class SinglyLinkedList implements ISinglyLinkedList {
@@ -23,7 +27,7 @@ class SinglyLinkedList implements ISinglyLinkedList {
     this.length = 0;
   }
 
-  push(value: string) {
+  push(value: string): SinglyLinkedList {
     const node = new Node(value);
 
     if (this.length === 0) {
