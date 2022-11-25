@@ -8,12 +8,14 @@ interface ISinglyLinkedList {
   length: number
 
   push(value: unknown): ISinglyLinkedList
-  pop(): NodeType | undefined
-  shift(): NodeType | undefined
+  pop(): NodeType
+  shift(): NodeType
   push(value: string): SinglyLinkedList
   get(index: number): NodeType
   set(index: number, value: string): boolean
   insert(index: number, value: string): boolean
+  remove(index: number): NodeType
+  reverse(): SinglyLinkedList
 }
 
 class SinglyLinkedList implements ISinglyLinkedList {
@@ -45,7 +47,7 @@ class SinglyLinkedList implements ISinglyLinkedList {
 
   pop() {
     if (this.length === 0) {
-      return undefined;
+      return null;
     }
 
     let current = this.head;
@@ -85,7 +87,7 @@ class SinglyLinkedList implements ISinglyLinkedList {
       this.tail = null;
     }
 
-    return undefined;
+    return null;
   }
 
   unshift(value: string) {
@@ -162,6 +164,48 @@ class SinglyLinkedList implements ISinglyLinkedList {
     this.incrementListLength();
 
     return true;
+  }
+
+  remove(index: number): NodeType {
+      if (index < 0 || index >= this.length) {
+        return null;
+      }
+
+      if (index === 0) {
+        return this.shift();
+      }
+
+      if (index === this.length - 1) {
+        return this.pop();
+      }
+
+      const prevNode = this.get(index - 1);
+      const nodeToRemove = prevNode!.next;
+      const nextNode = prevNode!.next!.next;
+
+      prevNode!.next = nextNode;
+      this.decrementListLength();
+
+      return nodeToRemove;
+  }
+
+  reverse(): SinglyLinkedList {
+      let node = this.head;
+
+      this.head = this.tail;
+      this.tail = node;
+
+      let prev = null;
+      let next = null;
+
+      for (let i = 0; i < this.length; i += 1) {
+        next = node?.next;
+        node!.next = prev;
+        prev = node;
+        node = next as NodeType;
+      }
+
+      return this;
   }
 
   private incrementListLength() {
