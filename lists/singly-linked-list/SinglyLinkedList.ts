@@ -1,4 +1,4 @@
-import Node from '../utils/node';
+import Node from './node';
 
 type NodeType = Node<string> | null
 
