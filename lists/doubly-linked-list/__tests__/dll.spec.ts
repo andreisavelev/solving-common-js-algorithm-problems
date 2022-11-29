@@ -37,11 +37,12 @@ describe('DLL', () => {
         dll.push(second);
         dll.push(third);
 
-        dll.pop();
+        const popped = dll.pop();
 
         expect(dll.tail?.next).toBeNull();
         expect(dll.tail?.value).toBe(second);
         expect(dll.tail?.prev?.value).toBe(first);
         expect(dll.length).toBe(2);
+        expect(popped?.value).toBe(third);
     });
 })

@@ -70,13 +70,13 @@ export default class SinglyLinkedList implements IDoublyLinkedList<string> {
             return null;
         }
 
-        const toBeNext = this.tail!.prev;
+        const poppedNode = this.tail;
 
-        this.tail = toBeNext;
+        this.tail = poppedNode!.prev;
         this.tail!.next = null;
         this.decrementLenght();
 
-        return toBeNext;
+        return poppedNode;
     }
 
     private incrementLength() {
