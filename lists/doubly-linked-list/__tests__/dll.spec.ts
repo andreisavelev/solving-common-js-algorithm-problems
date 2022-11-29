@@ -89,5 +89,22 @@ describe('DLL', () => {
         expect(dll.head).toBeNull();
         expect(dll.tail).toBeNull();
         expect(dll).toHaveLength(0)
-    })
+    });
+
+    it('should handle the unshift method', () => {
+        const dll = new DoublyLinkedList();
+        const first = 'first';
+        const second = 'second';
+
+        dll.unshift(first);
+        expect(dll.head?.value).toBe(first);
+        expect(dll.tail?.value).toBe(first);
+        expect(dll).toHaveLength(1);
+
+        dll.unshift(second);
+        expect(dll.head?.value).toBe(second);
+        expect(dll.head?.prev).toBeNull();
+        expect(dll.head?.next?.value).toBe(first);
+        expect(dll).toHaveLength(2);
+    });
 })

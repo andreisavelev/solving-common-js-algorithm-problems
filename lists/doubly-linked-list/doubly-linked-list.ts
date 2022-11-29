@@ -21,6 +21,11 @@ interface IDoublyLinkedList<T> {
      * This method changes the length of the list.
      */
     shift(): TNode<T>
+
+    /**
+     * Adds one elements to the beginning of a list and returns the new length of the list
+     */
+    unshift(value: T): number
 }
 
 export default class SinglyLinkedList implements IDoublyLinkedList<string> {
@@ -99,6 +104,23 @@ export default class SinglyLinkedList implements IDoublyLinkedList<string> {
         }
 
         return shiftedNode;
+    }
+
+    unshift(value: string) {
+        const node = new Node(value);
+
+        if (this.isListEmpty()) {
+            this.head = node;
+            this.tail = node;
+        } else {
+            this.head!.prev = node;
+            node.next = this.head;
+            this.head = node;
+        }
+
+        this.incrementLength();
+
+        return this.length;
     }
 
     private incrementLength() {
