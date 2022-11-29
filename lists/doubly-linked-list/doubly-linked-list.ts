@@ -16,11 +16,11 @@ interface IDoublyLinkedList<T> {
      */
     pop(): TNode<T>
 
-    // /**
-    //  * Remove the first element of a list and returns that element.
-    //  * This method changes the length of the list.
-    //  */
-    // shift(): TNode<T>
+    /**
+     * Remove the first element of a list and returns that element.
+     * This method changes the length of the list.
+     */
+    shift(): TNode<T>
 }
 
 export default class SinglyLinkedList implements IDoublyLinkedList<string> {
@@ -61,24 +61,44 @@ export default class SinglyLinkedList implements IDoublyLinkedList<string> {
             return null;
         }
 
+        const poppedNode = this.tail;
+
         if (this.doesListContainOnlyOne()) {
             this.head = null;
             this.tail = null;
 
             this.decrementLenght();
+        } else {
+            this.tail = poppedNode!.prev;
+            this.tail!.next = null;
+            this.decrementLenght();
 
+            poppedNode!.prev = null;
+        }
+
+        return poppedNode;
+    }
+
+    shift() {
+        if (this.isListEmpty()) {
             return null;
         }
 
-        const poppedNode = this.tail;
+        const shiftedNode = this.head;
 
-        this.tail = poppedNode!.prev;
-        this.tail!.next = null;
-        this.decrementLenght();
+        if (this.doesListContainOnlyOne()) {
+            this.head = null;
+            this.tail = null;
+            this.decrementLenght();
+        } else {
+            this.head = shiftedNode!.next;
+            this.head!.prev = null;
+            this.decrementLenght();
 
-        poppedNode!.prev = null;
+            shiftedNode!.next = null;
+        }
 
-        return poppedNode;
+        return shiftedNode;
     }
 
     private incrementLength() {
