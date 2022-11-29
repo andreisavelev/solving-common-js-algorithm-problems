@@ -26,6 +26,11 @@ interface IDoublyLinkedList<T> {
      * Adds one elements to the beginning of a list and returns the new length of the list
      */
     unshift(value: T): number
+
+    /**
+     * Takes an integer value and return the item at that index.
+     */
+    get(index: number): TNode<T>
 }
 
 export default class SinglyLinkedList implements IDoublyLinkedList<string> {
@@ -121,6 +126,44 @@ export default class SinglyLinkedList implements IDoublyLinkedList<string> {
         this.incrementLength();
 
         return this.length;
+    }
+
+    get(index: number) {
+        if (index < 0 || index >= this.length) {
+            return null;
+        }
+
+        if (index === 0) {
+            this.head;
+        }
+
+        if (index === this.length - 1) {
+            return this.tail;
+        }
+
+        const middle = Math.round(this.length / 2);
+
+        if (index <= middle) {
+            let current = this.head;
+            let counter = 0;
+
+            while(counter < index) {
+                current = current!.next
+                counter += 1;
+            }
+
+            return current;
+        }
+
+        let current = this.tail;
+        let counter = this.length - 1;
+
+        while(counter > index) {
+            current = current!.prev;
+            counter -= 1;
+        }
+
+        return current;
     }
 
     private incrementLength() {

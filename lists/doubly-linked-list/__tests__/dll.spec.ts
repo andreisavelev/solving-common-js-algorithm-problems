@@ -1,21 +1,19 @@
 import DoublyLinkedList from '../doubly-linked-list';
 
+const first = 'first';
+const second = 'second';
+const third = 'third';
+const fourth = 'fourth';
+
 function fulFIllDLL() {
     const dll = new DoublyLinkedList();
-    const first = 'first';
-    const second = 'second';
-    const third = 'third';
+
 
     dll.push(first);
     dll.push(second);
     dll.push(third);
 
-    return {
-        dll,
-        first,
-        second,
-        third
-    }
+    return dll;
 }
 
 describe('DLL', () => {
@@ -46,13 +44,7 @@ describe('DLL', () => {
     });
 
     it('should handle the pop method', () => {
-        const {
-            dll,
-            first,
-            second,
-            third
-        } = fulFIllDLL()
-
+        const dll = fulFIllDLL()
         const popped = dll.pop();
 
         expect(dll.tail?.next).toBeNull();
@@ -64,13 +56,7 @@ describe('DLL', () => {
     });
 
     it('should handle the shift method', () => {
-        const {
-            dll,
-            first,
-            second,
-            third
-        } = fulFIllDLL()
-
+        const dll = fulFIllDLL()
         const shifted = dll.shift();
 
         expect(shifted?.value).toBe(first);
@@ -107,4 +93,32 @@ describe('DLL', () => {
         expect(dll.head?.next?.value).toBe(first);
         expect(dll).toHaveLength(2);
     });
+
+    it('should handle the get method', () => {
+        const dll = new DoublyLinkedList();
+
+        expect(dll.get(0)).toBeNull();
+        expect(dll.get(2)).toBeNull();
+
+        dll.push(first);
+        let node = dll.get(0);
+
+        expect(node?.value).toBe(first)
+
+        dll.push(second);
+        dll.push(third);
+
+        node = dll.get(2);
+        expect(node?.value).toBe(third);
+
+        dll.push(fourth);
+        node = dll.get(2);
+        expect(node?.value).toBe(third);
+
+        node = dll.get(1);
+        expect(node?.value).toBe(second);
+
+        node = dll.get(3);
+        expect(node?.value).toBe(fourth);
+    })
 })
