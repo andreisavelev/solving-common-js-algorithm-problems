@@ -6,7 +6,7 @@ interface IDoublyLinkedList<T> {
     length: number
 
     /**
-     * @param value Adds one elelement to the end of a list and returns the new length of the list;
+     * @param value Adds one element to the end of a list and returns the new length of the list;
      */
     push(value: T): number
 
@@ -67,11 +67,11 @@ export default class SinglyLinkedList implements IDoublyLinkedList<string> {
             this.head = null;
             this.tail = null;
 
-            this.decrementLenght();
+            this.decrementLength();
         } else {
             this.tail = poppedNode!.prev;
             this.tail!.next = null;
-            this.decrementLenght();
+            this.decrementLength();
 
             poppedNode!.prev = null;
         }
@@ -89,11 +89,11 @@ export default class SinglyLinkedList implements IDoublyLinkedList<string> {
         if (this.doesListContainOnlyOne()) {
             this.head = null;
             this.tail = null;
-            this.decrementLenght();
+            this.decrementLength();
         } else {
             this.head = shiftedNode!.next;
             this.head!.prev = null;
-            this.decrementLenght();
+            this.decrementLength();
 
             shiftedNode!.next = null;
         }
@@ -105,7 +105,7 @@ export default class SinglyLinkedList implements IDoublyLinkedList<string> {
         this.length += 1;
     }
 
-    private decrementLenght() {
+    private decrementLength() {
         this.length -= 1;
     }
 
