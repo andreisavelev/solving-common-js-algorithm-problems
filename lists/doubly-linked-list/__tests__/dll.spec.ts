@@ -44,5 +44,6 @@ describe('DLL', () => {
         expect(dll.tail?.prev?.value).toBe(first);
         expect(dll.length).toBe(2);
         expect(popped?.value).toBe(third);
+        expect(popped?.prev).toBeNull();
     });
 })

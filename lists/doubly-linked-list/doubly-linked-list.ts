@@ -76,6 +76,8 @@ export default class SinglyLinkedList implements IDoublyLinkedList<string> {
         this.tail!.next = null;
         this.decrementLenght();
 
+        poppedNode!.prev = null;
+
         return poppedNode;
     }
 
