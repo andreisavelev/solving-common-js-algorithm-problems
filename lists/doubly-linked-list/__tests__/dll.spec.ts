@@ -123,7 +123,7 @@ describe('DLL', () => {
     });
 
     describe('set', () => {
-        it('shoudl replace a value at the particular index', () => {
+        it('should replace a value at the particular index', () => {
             const dll = getFulfilledDLL();
             const newFirstValue = 'newFirstValue';
             const newLatValue = 'newLastValue';
