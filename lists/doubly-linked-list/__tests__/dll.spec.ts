@@ -205,5 +205,51 @@ describe('DLL', () => {
             expect(result).toBe(false);
             expect(dll.length).toBe(0);
         });
+    });
+
+    describe('Remove', () => {
+        it('should return null if there is nothing to remove', () => {
+            const emptyDll = new DoublyLinkedList();
+            const fulfilledDll = getFulfilledDLL();
+
+            const resultForEmptyDll = emptyDll.remove(0);
+            const resultForFulfilledDll = fulfilledDll.remove(fulfilledDll.length);
+
+            expect(resultForEmptyDll).toBe(null);
+            expect(resultForFulfilledDll).toBe(null);
+        });
+
+        it('should remove a node at the first position', () => {
+            const dll = getFulfilledDLL();
+            const currentFirstNode = dll.get(0);
+            const currentLength = dll.length;
+
+            const result = dll.remove(0);
+
+            expect(result).toBe(currentFirstNode);
+            expect(dll.length).toBe(currentLength - 1);
+        });
+
+        it('should remove a node at the last position', () => {
+            const dll = getFulfilledDLL();
+            const currentLastNode = dll.get(dll.length - 1);
+            const currentLength = dll.length;
+
+            const result = dll.remove(dll.length - 1);
+
+            expect(result).toBe(currentLastNode);
+            expect(dll.length).toBe(currentLength - 1);
+        });
+        
+        it('should remove a node at the index somewhere in the list', () => {
+            const dll = getFulfilledDLL();
+            const currentNode = dll.get(2);
+            const currentLength = dll.length;
+
+            const result = dll.remove(2);
+
+            expect(result).toBe(currentNode);
+            expect(dll.length).toBe(currentLength - 1);
+        });
     })
 })
