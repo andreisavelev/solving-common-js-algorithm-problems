@@ -149,4 +149,61 @@ describe('DLL', () => {
             expect(resultOfSettingInFulfilledDll).toBe(false);
         });
     });
+
+    describe('Insert', () => {
+        it('should insert a value at 0 index', () => {
+            const dll = getFulfilledDLL();
+            const newNodeValue = 'new node value';
+            const oldFirstNode = dll.get(0);
+            const oldDllLength = dll.length;
+
+            const result = dll.insert(newNodeValue, 0);
+
+            expect(dll.head?.value).toBe(newNodeValue);
+            expect(oldFirstNode?.prev?.value).toBe(newNodeValue);
+            expect(dll.head?.next?.value).toBe(oldFirstNode?.value);
+            expect(dll.length).toBe(oldDllLength + 1);
+            expect(result).toBe(true);
+        });
+
+        it('should insert a value at the last position', () => {
+            const dll = getFulfilledDLL();
+            const newNodeValue = 'new node value';
+            const oldLastNode = dll.get(dll.length - 1);
+            const oldDllLength = dll.length;
+
+            const result = dll.insert(newNodeValue, dll.length);
+
+            expect(dll.tail?.value).toBe(newNodeValue);
+            expect(dll.tail?.prev?.value).toBe(oldLastNode?.value);
+            expect(oldLastNode?.next?.value).toBe(newNodeValue);
+            expect(dll.length).toBe(oldDllLength + 1);
+            expect(result).toBe(true);
+        });
+
+        it('should insert a value at the index somewhere in the middle', () => {
+            const dll = getFulfilledDLL();
+            const newNodeValue = 'a value';
+            const index = 2;
+            const oldCurrentNode = dll.get(index);
+            const oldDllLength = dll.length;
+
+            const result = dll.insert(newNodeValue, index);
+            const currentNode = dll.get(index);
+
+            expect(result).toBe(true);
+            expect(currentNode?.next?.value).toBe(oldCurrentNode?.value);
+            expect(oldCurrentNode?.prev?.value).toBe(newNodeValue);
+            expect(dll.length).toBe(oldDllLength + 1);
+        });
+
+        it('should not insert a value if index is not valid', () => {
+            const dll = new DoublyLinkedList();
+            
+            const result = dll.insert('a value', 1);
+
+            expect(result).toBe(false);
+            expect(dll.length).toBe(0);
+        });
+    })
 })

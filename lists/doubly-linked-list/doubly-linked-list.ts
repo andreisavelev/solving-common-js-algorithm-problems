@@ -35,7 +35,12 @@ interface IDoublyLinkedList<T> {
     /**
      * Replace an available value at a particular index
      */
-    set(value: string, index: number): boolean
+    set(value: T, index: number): boolean
+    
+    /**
+     * Adding a node by a certain position
+     */
+    insert(value: T, index: number): boolean
 }
 
 export default class DoublyLinkedList implements IDoublyLinkedList<string> {
@@ -183,6 +188,37 @@ export default class DoublyLinkedList implements IDoublyLinkedList<string> {
         return false;
     }
 
+    insert(value: string, index: number): boolean {
+        if (index < 0 || index > this.length) {
+            return false;
+        }
+
+        if (index === 0) {
+            this.unshift(value);
+
+            return true;
+        }
+
+        if (index === this.length) {
+            this.push(value);
+
+            return true;
+        }
+
+        const newNode = new Node(value);
+        const node = this.get(index);
+        const prevNode = node!.prev;
+
+        prevNode!.next = newNode;
+        newNode.prev = prevNode;
+
+        newNode.next = node;
+        node!.prev = newNode;
+
+        this.length += 1;
+
+        return true;
+    }
 
     private incrementLength() {
         this.length += 1;
