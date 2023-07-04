@@ -33,7 +33,7 @@ interface IDoublyLinkedList<T> {
     get(index: number): TNode<T>
 }
 
-export default class SinglyLinkedList implements IDoublyLinkedList<string> {
+export default class DoublyLinkedList implements IDoublyLinkedList<string> {
     head: TNode<string>
     tail: TNode<string>
     length: number;
