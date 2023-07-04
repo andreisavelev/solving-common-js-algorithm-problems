@@ -38,9 +38,14 @@ interface IDoublyLinkedList<T> {
     set(value: T, index: number): boolean
     
     /**
-     * Adding a node by a certain position
+     * Add a node by a certain position
      */
     insert(value: T, index: number): boolean
+
+    /**
+     * Remove a node at certain position
+     */
+    remove(index: number): TNode<T> | null;
 }
 
 export default class DoublyLinkedList implements IDoublyLinkedList<string> {
@@ -215,9 +220,34 @@ export default class DoublyLinkedList implements IDoublyLinkedList<string> {
         newNode.next = node;
         node!.prev = newNode;
 
-        this.length += 1;
+        this.incrementLength();
 
         return true;
+    }
+
+    remove(index: number) {
+        if (index < 0 || index >= this.length) {
+            return null;
+        }
+
+        if (index === 0) {
+            return this.shift();
+        }
+
+        if (index === this.length - 1) {
+            return this.pop();
+        }
+
+        const currentNode = this.get(index);
+        const prevNode = currentNode!.prev;
+        const nextNode = currentNode!.next;
+
+        prevNode!.next = nextNode;
+        nextNode!.prev = prevNode;
+        
+        this.decrementLength();
+
+        return currentNode;
     }
 
     private incrementLength() {
