@@ -23,17 +23,22 @@ interface IDoublyLinkedList<T> {
     shift(): TNode<T>
 
     /**
-     * Adds one elements to the beginning of a list and returns the new length of the list
+     * Adds one element to the beginning of a list and returns the new length of the list
      */
     unshift(value: T): number
 
     /**
-     * Takes an integer value and return the item at that index.
+     * Takes an integer value and returns the item at that index.
      */
     get(index: number): TNode<T>
+
+    /**
+     * Replace an available value at a particular index
+     */
+    set(value: string, index: number): boolean
 }
 
-export default class SinglyLinkedList implements IDoublyLinkedList<string> {
+export default class DoublyLinkedList implements IDoublyLinkedList<string> {
     head: TNode<string>
     tail: TNode<string>
     length: number;
@@ -134,7 +139,7 @@ export default class SinglyLinkedList implements IDoublyLinkedList<string> {
         }
 
         if (index === 0) {
-            this.head;
+            return this.head;
         }
 
         if (index === this.length - 1) {
@@ -165,6 +170,19 @@ export default class SinglyLinkedList implements IDoublyLinkedList<string> {
 
         return current;
     }
+
+    set(value: string, index: number) {
+        const node = this.get(index);
+
+        if (node) {
+            node.value = value;
+
+            return true;
+        }
+
+        return false;
+    }
+
 
     private incrementLength() {
         this.length += 1;

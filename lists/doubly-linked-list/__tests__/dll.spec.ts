@@ -5,7 +5,7 @@ const second = 'second';
 const third = 'third';
 const fourth = 'fourth';
 
-function fulFIllDLL() {
+function getFulfilledDLL() {
     const dll = new DoublyLinkedList();
 
 
@@ -44,7 +44,7 @@ describe('DLL', () => {
     });
 
     it('should handle the pop method', () => {
-        const dll = fulFIllDLL()
+        const dll = getFulfilledDLL()
         const popped = dll.pop();
 
         expect(dll.tail?.next).toBeNull();
@@ -56,7 +56,7 @@ describe('DLL', () => {
     });
 
     it('should handle the shift method', () => {
-        const dll = fulFIllDLL()
+        const dll = getFulfilledDLL()
         const shifted = dll.shift();
 
         expect(shifted?.value).toBe(first);
@@ -120,5 +120,33 @@ describe('DLL', () => {
 
         node = dll.get(3);
         expect(node?.value).toBe(fourth);
-    })
+    });
+
+    describe('set', () => {
+        it('should replace a value at the particular index', () => {
+            const dll = getFulfilledDLL();
+            const newFirstValue = 'newFirstValue';
+            const newLatValue = 'newLastValue';
+            const lastIndex = dll.length - 1;
+
+            const firstResult = dll.set(newFirstValue, 0);
+            const lastResult = dll.set(newLatValue, lastIndex);
+
+            expect(firstResult).toBe(true);
+            expect(lastResult).toBe(true);
+            expect(dll.get(0)?.value).toBe(newFirstValue);
+            expect(dll.get(lastIndex)?.value).toBe(newLatValue);
+        });
+
+        it('should not replace a value if there is nothing to replace', () => {
+            const fulfilledDll = getFulfilledDLL();
+            const emptyDll = new DoublyLinkedList();
+
+            const resultOfSettingInFulfilledDll = fulfilledDll.set('a value', fulfilledDll.length);
+            const resultOfSettingInEmptyDll = emptyDll.set('a value', 0);
+
+            expect(resultOfSettingInEmptyDll).toBe(false);
+            expect(resultOfSettingInFulfilledDll).toBe(false);
+        });
+    });
 })
