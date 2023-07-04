@@ -5,7 +5,7 @@ on:
         types: [opened, edited]
   
 jobs:
-    check-links:
+    awesome-part:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
