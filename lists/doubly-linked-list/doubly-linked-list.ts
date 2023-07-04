@@ -31,6 +31,11 @@ interface IDoublyLinkedList<T> {
      * Takes an integer value and return the item at that index.
      */
     get(index: number): TNode<T>
+
+    /**
+     * Replace a avalue at a particualr index
+     */
+    set(): boolean
 }
 
 export default class DoublyLinkedList implements IDoublyLinkedList<string> {
@@ -165,6 +170,19 @@ export default class DoublyLinkedList implements IDoublyLinkedList<string> {
 
         return current;
     }
+
+    set(value: string, index: number) {
+        const node = this.get(index);
+
+        if (node) {
+            node.value = value;
+
+            return true;
+        }
+
+        return false;
+    }
+
 
     private incrementLength() {
         this.length += 1;
