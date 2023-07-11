@@ -1,5 +1,5 @@
-import type { INode, NodeEntity } from "./node";
-import Node from "./node";
+import type { NodeEntity } from "../shared/node";
+import Node from "../shared/node";
 
 interface IStack {
   first: NodeEntity;
