@@ -1,7 +1,7 @@
 const swap = function<T> (list: T[], indexFrom: number, indexTo: number ): T[] {
     return [
-        list[indexTo], 
-        list[indexFrom]
+        list[indexFrom],
+        list[indexTo]
     ] = [
         list[indexTo], 
         list[indexFrom]
