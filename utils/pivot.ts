@@ -13,7 +13,7 @@ import swap from './swap';
  * @param startIndex {number}
  * @returns {number}
  */
-const pivot = function (arr: number[], startIndex = 0): number {
+const pivot = function (arr: number[], startIndex: number = 0): number {
     let pivot: number = arr[startIndex];
     let swapIndex: number = startIndex;
 
