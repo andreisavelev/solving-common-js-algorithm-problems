@@ -1,4 +1,5 @@
-import { TreeNode, type TTreeNodeEntity } from "../shared/node";
+import type  { TTreeNodeEntity, } from "../shared/node";
+import { TreeNode } from "../shared/node";
 
 interface ITree<T> {
   root: TTreeNodeEntity<T>;
