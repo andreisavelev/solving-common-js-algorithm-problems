@@ -1,9 +1,10 @@
+
 import type { TTreeNodeEntity, ITreeNode } from "../shared/node";
 import { TreeNode } from "../shared/node";
 
 interface ITree<T> {
   root: TTreeNodeEntity<T>;
-  insert(value: T): undefined;
+  insert(value: T): undefined
 }
 
 export class Tree implements ITree<number> {
@@ -24,14 +25,14 @@ export class Tree implements ITree<number> {
 
     let currentNode = this.root;
 
-    while (true) {
+    while(true) {
       if (value > currentNode.value) {
         if (currentNode.right === null) {
           currentNode.right = node;
-
+          
           return;
         } else {
-          currentNode = currentNode.right;
+          currentNode = currentNode.right
         }
       } else if (value < currentNode.value) {
         if (currentNode.left === null) {
