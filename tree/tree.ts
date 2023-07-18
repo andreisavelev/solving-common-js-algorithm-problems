@@ -1,9 +1,9 @@
-import type  { TTreeNodeEntity, } from "../shared/node";
+import type { TTreeNodeEntity, ITreeNode } from "../shared/node";
 import { TreeNode } from "../shared/node";
 
 interface ITree<T> {
   root: TTreeNodeEntity<T>;
-  insert(value: T): undefined
+  insert(value: T): undefined;
 }
 
 export class Tree implements ITree<number> {
@@ -24,14 +24,14 @@ export class Tree implements ITree<number> {
 
     let currentNode = this.root;
 
-    while(true) {
+    while (true) {
       if (value > currentNode.value) {
         if (currentNode.right === null) {
           currentNode.right = node;
-          
+
           return;
         } else {
-          currentNode = currentNode.right
+          currentNode = currentNode.right;
         }
       } else if (value < currentNode.value) {
         if (currentNode.left === null) {
@@ -44,7 +44,35 @@ export class Tree implements ITree<number> {
       } else if (value === currentNode.value) {
         return;
       } else {
-        throw new Error('Value should be only a number');
+        throw new Error("Value should be only a number");
+      }
+    }
+  }
+
+  find(value: number): TTreeNodeEntity<number> {
+    if (this.root === null) {
+      return null;
+    }
+
+    let currentNode = this.root;
+
+    if (currentNode.value === value) {
+      return currentNode;
+    }
+
+    while (true) {
+      if (currentNode === null) {
+        return null;
+      }
+
+      if (currentNode.value === value) {
+        return currentNode;
+      }
+      
+      if (value > currentNode.value) {
+        currentNode = currentNode.right as ITreeNode<number>;
+      } else {
+        currentNode = currentNode.left as ITreeNode<number>;
       }
     }
   }
