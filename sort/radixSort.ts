@@ -1,37 +1,35 @@
-import getMostDigitCount from '../utils/get-most-digit-count';
-import getDigit from '../utils/get-digit';
+import getMostDigitCount from "../utils/get-most-digit-count";
+import getDigit from "../utils/get-digit";
 
 /**
  * The Radix Sort function. Full description is in the its body.
- * @param nums {number[]}
+ * @param numbers {number[]}
  */
-const radixSort = function (nums: number[]): number[][] {
+const radixSort = function (numbers: number[]): number[][] {
+  // figure out how many digits the largest number has
+  let maxDigits: number = getMostDigitCount(numbers);
+  // will contains an array of array of numbers
+  let buckets: number[][];
+  let container: number[][] = [];
+  let result: number[][] = [];
 
-    // figure out how many digits the largest number has
-    let maxDisgits: number = getMostDigitCount(nums);
-    // will contans an array of array of numbers
-    let buckets: Array<Array<number>>;
-    let container: Array<Array<number>> = [];
-    let result: number[][] = [];
+  // will contains a digit on the given position
+  let digit: number;
 
-    // will contains a digit on the given position
-    let digit: number;
+  // loop from k = 0 up to this largest number of digits
+  for (let k = 0; k < maxDigits; k++) {
+    // Create buckets for each digits (0 to 9)
+    buckets = Array.from({ length: 10 }, () => []);
 
-    // loop from k = 0 up to this largest number of digits
-    for (let k = 0; k < maxDisgits; k++) {
-
-        // Create buckets for each digits (0 to 9)
-        buckets = Array.from({ length: 10 }, () => []);
-
-        // place each number in the corresponding bucket based on its k-th digit
-        for (let i = 0; i < nums.length; i++) {
-            digit = getDigit(nums[i], k);
-            buckets[digit].push(nums[i])
-        }
-
-        // replace our existing array with values in our buckets, starting from 0 and going up to 9
-        result = container.concat(...buckets);
+    // place each number in the corresponding bucket based on its k-th digit
+    for (const element of numbers) {
+      digit = getDigit(element, k);
+      buckets[digit].push(element);
     }
 
-    return result;
+    // replace our existing array with values in our buckets, starting from 0 and going up to 9
+    result = buckets;
+  }
+
+  return result;
 };

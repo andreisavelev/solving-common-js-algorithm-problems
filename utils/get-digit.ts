@@ -5,7 +5,7 @@
  * @returns {number}
  */
 const getDigit = function (num: number, place: number): number {
-    return Math.floor(Math.abs(num) / Math.pow(10, place)) % 10;
+  return Math.floor(Math.abs(num) / Math.pow(10, place)) % 10;
 };
 
 export default getDigit;
