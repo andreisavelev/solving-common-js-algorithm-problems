@@ -163,40 +163,40 @@ describe("SinglyLinkedList", () => {
       expect(result).toBeNull();
     });
 
-    it('Should return firts node as removed', () => {
+    it("Should return firts node as removed", () => {
       const node = list!.remove(0);
 
-      expect(node?.value).toBe('Hello');
+      expect(node?.value).toBe("Hello");
       expect(list?.length).toBe(1);
     });
 
-    it('Should return second node as removed', () => {
+    it("Should return second node as removed", () => {
       const node = list!.remove(1);
 
-      expect(node?.value).toBe('world');
-      expect(list?.head?.value).toBe('Hello');
+      expect(node?.value).toBe("world");
+      expect(list?.head?.value).toBe("Hello");
       expect(list?.length).toBe(1);
     });
   });
 
-  describe('reverse', () => {
-    it('should swap head & tail', () => {
+  describe("reverse", () => {
+    it("should swap head & tail", () => {
       const result = list?.reverse();
 
-      expect(list?.head?.value).toBe('world');
-      expect(list?.tail?.value).toBe('Hello');
-    })
+      expect(list?.head?.value).toBe("world");
+      expect(list?.tail?.value).toBe("Hello");
+    });
 
-    it('should reverse list', () => {
-      list?.push('for');
-      list?.push('the best');
+    it("should reverse list", () => {
+      list?.push("for");
+      list?.push("the best");
 
       const result = list?.reverse();
 
-      expect(list?.get(0)?.value).toBe('the best');
-      expect(list?.get(1)?.value).toBe('for');
-      expect(list?.get(2)?.value).toBe('world');
-      expect(list?.get(3)?.value).toBe('Hello');
-    })
-  })
+      expect(list?.get(0)?.value).toBe("the best");
+      expect(list?.get(1)?.value).toBe("for");
+      expect(list?.get(2)?.value).toBe("world");
+      expect(list?.get(3)?.value).toBe("Hello");
+    });
+  });
 });

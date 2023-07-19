@@ -1,4 +1,4 @@
-import swap from './swap';
+import swap from "./swap";
 
 /**
  * Pivot helper
@@ -14,19 +14,19 @@ import swap from './swap';
  * @returns {number}
  */
 const pivot = function (arr: number[], startIndex: number = 0): number {
-    let pivot: number = arr[startIndex];
-    let swapIndex: number = startIndex;
+  let pivot: number = arr[startIndex];
+  let swapIndex: number = startIndex;
 
-    for (let i: number = startIndex + 1; i < arr.length; i++) {
-        if (pivot > arr[i]) {
-            swapIndex += 1;
-            swap(arr, swapIndex, i);
-        }
+  for (let i: number = startIndex + 1; i < arr.length; i++) {
+    if (pivot > arr[i]) {
+      swapIndex += 1;
+      swap(arr, swapIndex, i);
     }
+  }
 
-    swap(arr, swapIndex, startIndex);
+  swap(arr, swapIndex, startIndex);
 
-    return swapIndex;
-}
+  return swapIndex;
+};
 
 export default pivot;
