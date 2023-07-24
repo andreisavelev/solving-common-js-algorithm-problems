@@ -52,7 +52,7 @@ describe("Queue", () => {
     });
 
     it("should remove only element from the queue", () => {
-      const expectedValue = 'value'
+      const expectedValue = "value";
       const [, queue] = getFulfilledQueue(expectedValue);
 
       const result = queue.dequeue();

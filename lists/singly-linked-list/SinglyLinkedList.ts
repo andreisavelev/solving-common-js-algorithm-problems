@@ -1,21 +1,21 @@
-import Node from './node';
+import Node from "./node";
 
-type NodeType = Node<string> | null
+type NodeType = Node<string> | null;
 
 interface ISinglyLinkedList {
-  head: NodeType
-  tail: NodeType
-  length: number
+  head: NodeType;
+  tail: NodeType;
+  length: number;
 
-  push(value: unknown): ISinglyLinkedList
-  pop(): NodeType
-  shift(): NodeType
-  push(value: string): SinglyLinkedList
-  get(index: number): NodeType
-  set(index: number, value: string): boolean
-  insert(index: number, value: string): boolean
-  remove(index: number): NodeType
-  reverse(): SinglyLinkedList
+  push(value: unknown): ISinglyLinkedList;
+  pop(): NodeType;
+  shift(): NodeType;
+  push(value: string): SinglyLinkedList;
+  get(index: number): NodeType;
+  set(index: number, value: string): boolean;
+  insert(index: number, value: string): boolean;
+  remove(index: number): NodeType;
+  reverse(): SinglyLinkedList;
 }
 
 class SinglyLinkedList implements ISinglyLinkedList {
@@ -63,14 +63,14 @@ class SinglyLinkedList implements ISinglyLinkedList {
 
     while (current?.next) {
       newTail = current;
-      current = current.next
+      current = current.next;
     }
 
     this.tail = newTail;
-    this.tail!.next = null
+    this.tail!.next = null;
     this.decrementListLength();
 
-    return current
+    return current;
   }
 
   shift() {
@@ -94,7 +94,7 @@ class SinglyLinkedList implements ISinglyLinkedList {
     const node = new Node(value);
 
     if (this.head === null) {
-      this.head = node
+      this.head = node;
       this.tail = node;
     } else {
       node.next = this.head;
@@ -140,7 +140,7 @@ class SinglyLinkedList implements ISinglyLinkedList {
     return true;
   }
 
-  insert(index: number, value: string):boolean {
+  insert(index: number, value: string): boolean {
     if (index < 0 || index > this.length) {
       return false;
     }
@@ -167,45 +167,45 @@ class SinglyLinkedList implements ISinglyLinkedList {
   }
 
   remove(index: number): NodeType {
-      if (index < 0 || index >= this.length) {
-        return null;
-      }
+    if (index < 0 || index >= this.length) {
+      return null;
+    }
 
-      if (index === 0) {
-        return this.shift();
-      }
+    if (index === 0) {
+      return this.shift();
+    }
 
-      if (index === this.length - 1) {
-        return this.pop();
-      }
+    if (index === this.length - 1) {
+      return this.pop();
+    }
 
-      const prevNode = this.get(index - 1);
-      const nodeToRemove = prevNode!.next;
-      const nextNode = prevNode!.next!.next;
+    const prevNode = this.get(index - 1);
+    const nodeToRemove = prevNode!.next;
+    const nextNode = prevNode!.next!.next;
 
-      prevNode!.next = nextNode;
-      this.decrementListLength();
+    prevNode!.next = nextNode;
+    this.decrementListLength();
 
-      return nodeToRemove;
+    return nodeToRemove;
   }
 
   reverse(): SinglyLinkedList {
-      let node = this.head;
+    let node = this.head;
 
-      this.head = this.tail;
-      this.tail = node;
+    this.head = this.tail;
+    this.tail = node;
 
-      let prev = null;
-      let next = null;
+    let prev = null;
+    let next = null;
 
-      for (let i = 0; i < this.length; i += 1) {
-        next = node?.next;
-        node!.next = prev;
-        prev = node;
-        node = next as NodeType;
-      }
+    for (let i = 0; i < this.length; i += 1) {
+      next = node?.next;
+      node!.next = prev;
+      prev = node;
+      node = next as NodeType;
+    }
 
-      return this;
+    return this;
   }
 
   private incrementListLength() {

@@ -1,4 +1,4 @@
-import pivot from '../utils/pivot';
+import pivot from "../utils/pivot";
 
 /**
  * QuickSort
@@ -13,21 +13,21 @@ import pivot from '../utils/pivot';
  * @returns {number[]}
  */
 const quickSort = function (
-    arr: number[],
-    left = 0,
-    right = arr.length - 1
+  arr: number[],
+  left = 0,
+  right = arr.length - 1
 ): number[] {
-    let pivotIndex: number;
+  let pivotIndex: number;
 
-    if (left < right) {
-        pivotIndex = pivot(arr);
+  if (left < right) {
+    pivotIndex = pivot(arr);
 
-        // left subarray
-        quickSort(arr, left, pivotIndex - 1);
+    // left subarray
+    quickSort(arr, left, pivotIndex - 1);
 
-        // right subarray
-        quickSort(arr, pivotIndex + 1, right);
-    }
+    // right subarray
+    quickSort(arr, pivotIndex + 1, right);
+  }
 
-    return arr;
-}
+  return arr;
+};

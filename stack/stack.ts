@@ -8,7 +8,7 @@ interface IStack {
 
   push(value: unknown): number;
 
-  pop(): NodeEntity
+  pop(): NodeEntity;
 }
 
 export class Stack implements IStack {
@@ -25,12 +25,12 @@ export class Stack implements IStack {
   push(value: unknown) {
     const node = new Node(value);
 
-    if(this.length === 0) {
-        this.first = node;
-        this.last = node;
-        this.length += 1;
+    if (this.length === 0) {
+      this.first = node;
+      this.last = node;
+      this.length += 1;
 
-        return this.length;
+      return this.length;
     }
 
     const currentFirstNode = this.first;
@@ -43,11 +43,11 @@ export class Stack implements IStack {
 
   pop() {
     if (this.length === 0) {
-        return null;
+      return null;
     }
 
     if (this.length === 1) {
-        this.last = null;
+      this.last = null;
     }
 
     const currentFirst = this.first;
