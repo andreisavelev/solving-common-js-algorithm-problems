@@ -124,4 +124,35 @@ describe("Tree", () => {
       expect(tree.find(null)).toBeNull();
     });
   });
+
+  describe("Breadth First Search", () => {
+    it("should return an empty array when there is no root", () => {
+      const tree = new Tree();
+
+      expect(tree.bfs()).toEqual([]);
+    });
+
+    it("should return the root node if there is a root", () => {
+      const tree = new Tree();
+
+      tree.insert(1);
+      const result = tree.bfs();
+      expect(result[0]?.value).toEqual(1);
+    });
+    
+    it("should return all nodes from the tree", () => {
+      const tree = new Tree();
+      const values = [1, 2, 3, 4, 5, 6]
+      
+      values.forEach((value) => {
+        tree.insert(value);
+      });
+
+      const result = tree.bfs();
+
+      result.forEach((node, index) => {
+        expect(node?.value).toBe(values[index]);
+      });
+    });
+  });
 });
