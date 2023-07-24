@@ -76,4 +76,26 @@ export class Tree implements ITree<number> {
       }
     }
   }
+
+  bfs() {
+    const root = this.root;
+    const queue: TTreeNodeEntity<number>[] = [];
+    const visited: TTreeNodeEntity<number>[] = [];
+
+    if (root === null) {
+      return visited
+    }
+
+    queue.push(root);
+
+    while (queue.length) {
+      const node = queue.pop() as TTreeNodeEntity<number>;
+      visited.push(node);
+
+      node?.left && queue.push(node.left);
+      node?.right && queue.push(node.right);
+    }
+
+    return visited;
+  }
 }
