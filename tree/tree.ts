@@ -83,7 +83,7 @@ export class Tree implements ITree<number> {
     const visited: TTreeNodeEntity<number>[] = [];
 
     if (root === null) {
-      return visited
+      return visited;
     }
 
     queue.push(root);
@@ -97,5 +97,26 @@ export class Tree implements ITree<number> {
     }
 
     return visited;
+  }
+
+  dfsPreOrder(): TTreeNodeEntity<number>[] {
+    const current = this.root;
+    const visited: TTreeNodeEntity<number>[] = [];
+    const traverse = (
+      node: TTreeNodeEntity<number>
+    ): TTreeNodeEntity<number>[] => {
+      if (node === null) {
+        return [];
+      }
+
+      visited.push(node);
+
+      if (node?.left) traverse(node.left);
+      if (node?.right) traverse(node.right);
+
+      return visited;
+    };
+
+    return traverse(current);
   }
 }

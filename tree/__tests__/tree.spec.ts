@@ -139,11 +139,11 @@ describe("Tree", () => {
       const result = tree.bfs();
       expect(result[0]?.value).toEqual(1);
     });
-    
+
     it("should return all nodes from the tree", () => {
       const tree = new Tree();
-      const values = [1, 2, 3, 4, 5, 6]
-      
+      const values = [1, 2, 3, 4, 5, 6];
+
       values.forEach((value) => {
         tree.insert(value);
       });
@@ -152,6 +152,24 @@ describe("Tree", () => {
 
       result.forEach((node, index) => {
         expect(node?.value).toBe(values[index]);
+      });
+    });
+  });
+
+  describe("dfs pre-order", () => {
+    it("should return the correct order", () => {
+      const tree = new Tree();
+      const values = [10, 6, 15, 3, 8, 20];
+      const expected = [10, 6, 3, 8, 15, 20];
+
+      values.forEach((value) => {
+        tree.insert(value);
+      });
+
+      const result = tree.dfsPreOrder();
+
+      result.forEach((node, index) => {
+        expect(node?.value).toEqual(expected[index]);
       });
     });
   });
