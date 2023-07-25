@@ -173,4 +173,22 @@ describe("Tree", () => {
       });
     });
   });
+
+  describe("dfs post-order", () => {
+    it("should return the correct order", () => {
+      const tree = new Tree();
+      const values = [10, 6, 15, 3, 8, 20];
+      const expected = [3, 8, 6, 20, 15, 10];
+
+      values.forEach((value) => {
+        tree.insert(value);
+      });
+
+      const result = tree.dfsPostOrder();
+
+      result.forEach((node, index) => {
+        expect(node?.value).toEqual(expected[index]);
+      });
+    });
+  });
 });
