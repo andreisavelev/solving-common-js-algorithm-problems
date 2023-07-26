@@ -122,7 +122,9 @@ export class Tree implements ITree<number> {
 
   dfsPostOrder(): TTreeNodeEntity<number>[] {
     const visited: TTreeNodeEntity<number>[] = [];
-    const traverse = (node: TTreeNodeEntity<number>): TTreeNodeEntity<number>[] => {
+    const traverse = (
+      node: TTreeNodeEntity<number>
+    ): TTreeNodeEntity<number>[] => {
       if (node === null) {
         return visited;
       }
@@ -133,7 +135,31 @@ export class Tree implements ITree<number> {
       visited.push(node);
 
       return visited;
-    }
+    };
+
+    return traverse(this.root);
+  }
+
+  dfsInOrder(): TTreeNodeEntity<number>[] {
+    const visited: TTreeNodeEntity<number>[] = [];
+    const traverse = (
+      node: TTreeNodeEntity<number>
+    ): TTreeNodeEntity<number>[] => {
+      if (node === null) {
+        return visited;
+      }
+
+      if (node.left) {
+        traverse(node.left);
+        visited.push(node.left);
+      }
+
+      if (node.right) {
+        traverse(node.right);
+      }
+
+      return visited;
+    };
 
     return traverse(this.root);
   }
