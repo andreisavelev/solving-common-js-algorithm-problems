@@ -149,14 +149,11 @@ export class Tree implements ITree<number> {
         return visited;
       }
 
-      if (node.left) {
-        traverse(node.left);
-        visited.push(node.left);
-      }
-
-      if (node.right) {
-        traverse(node.right);
-      }
+      if (node.left) traverse(node.left);
+      
+      visited.push(node);
+      
+      if (node.right) traverse(node.right);
 
       return visited;
     };

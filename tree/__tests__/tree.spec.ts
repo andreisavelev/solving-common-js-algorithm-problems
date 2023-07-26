@@ -1,5 +1,7 @@
 import { Tree } from "../tree";
 
+const values = [10, 6, 15, 3, 8, 20];
+
 describe("Tree", () => {
   describe("insert", () => {
     it("should insert a value into an empty tree", () => {
@@ -159,7 +161,6 @@ describe("Tree", () => {
   describe("dfs pre-order", () => {
     it("should return the correct order", () => {
       const tree = new Tree();
-      const values = [10, 6, 15, 3, 8, 20];
       const expected = [10, 6, 3, 8, 15, 20];
 
       values.forEach((value) => {
@@ -177,7 +178,6 @@ describe("Tree", () => {
   describe("dfs post-order", () => {
     it("should return the correct order", () => {
       const tree = new Tree();
-      const values = [10, 6, 15, 3, 8, 20];
       const expected = [3, 8, 6, 20, 15, 10];
 
       values.forEach((value) => {
@@ -191,4 +191,21 @@ describe("Tree", () => {
       });
     });
   });
+
+  describe("dfs inOrder", () => {
+    it("should return the correct order", () => {
+      const tree = new Tree();
+      const expected = [3, 6, 8, 10, 15, 20];
+
+      values.forEach((value) => {
+        tree.insert(value);
+      });
+
+      const result = tree.dfsInOrder();
+
+      result.forEach((node, index) => {
+        expect(node?.value).toEqual(expected[index]);
+      });
+    });
+  })
 });
